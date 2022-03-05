@@ -52,7 +52,6 @@ class AirSensor:
 				self.mq9.append(value)
 			case 135:
 				self.mq135.append(value)
-		}
 		
 
 	# def saveData(data):
