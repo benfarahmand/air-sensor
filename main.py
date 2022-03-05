@@ -1,5 +1,5 @@
 import serial
-import re
+# import re
 
 class AirSensor:
 
@@ -13,7 +13,8 @@ class AirSensor:
 
 	def parseData(self, raw):
 		# to do
-		result = re.search(":(.*)-",raw)
+		# result = re.search(":(.*)-",raw)
+		result = raw[raw.find(": ")+1 : raw.find(" -")]
 		return result
 
 	# def saveData(data):
@@ -31,7 +32,7 @@ class AirSensor:
 				# print(raw)
 				data = self.parseData(raw)
 				if data is not None:
-					print(len(data))
+					print(data)
 			# saveData(data)
 			# visualizeData(data)
 
