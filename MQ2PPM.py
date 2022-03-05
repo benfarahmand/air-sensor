@@ -46,9 +46,10 @@ class MQ2PPM():
         # print("Ro=%f kohm" % self.Ro)
     
     
-    def MQPercentage(self, read):
+    def MQPercentage(self, raw):
         val = {}
         # read = self.MQRead(self.MQ_PIN) # instead of reading the value from MQRead, we pass the value
+        read = self.MQResistanceCalculation(raw)
         val["GAS_LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LPG)
         val["CO"]       = self.MQGetGasPercentage(read/self.Ro, self.GAS_CO)
         val["SMOKE"]    = self.MQGetGasPercentage(read/self.Ro, self.GAS_SMOKE)
@@ -61,7 +62,7 @@ class MQ2PPM():
     #          across the load resistor and its resistance, the resistance of the sensor
     #          could be derived.
     ############################################################################ 
-    def MQResistanceCalculation(self, raw_adc):
+    def MQResistanceCalculation(self, raw_adc): #this is necessary
         return float(self.RL_VALUE*(1023.0-raw_adc)/float(raw_adc));
      
      
@@ -133,3 +134,4 @@ class MQ2PPM():
     ############################################################################ 
     def MQGetPercentage(self, rs_ro_ratio, pcurve):
         return (math.pow(10,( ((math.log(rs_ro_ratio)-pcurve[1])/ pcurve[2]) + pcurve[0])))
+        # self.LPGCurve = [2.3,0.21,-0.47] 
