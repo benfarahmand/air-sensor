@@ -3,12 +3,15 @@ import re
 
 class AirSensor:
 
-	def getDataFromArduino(ser):
+	def __init__(self):
+		self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
+
+	def getDataFromArduino(self, ser):
 		# to do
 		if ser.in_waiting > 0:
 			return ser.readline().decode('utf-8').rstrip()
 
-	def parseData(raw):
+	def parseData(self, raw):
 		# to do
 		result = re.search(":(.*)-",raw)
 		return result
@@ -20,8 +23,8 @@ class AirSensor:
 		# to do
 
 	def __call__(self):
-		ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
-		ser.reset_input_buffer()
+		
+		self.ser.reset_input_buffer()
 		while True:
 			raw = self.getDataFromArduino(ser)
 			data = self.parseData(raw)
