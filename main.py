@@ -19,7 +19,7 @@ class AirSensor:
 	# def visualizeData(data):
 		# to do
 
-	def main():
+	def __call__(self):
 		ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
 		ser.reset_input_buffer()
 		while True:
@@ -29,5 +29,5 @@ class AirSensor:
 			# saveData(data)
 			# visualizeData(data)
 
-a = main()
+a = AirSensor()
 a()
