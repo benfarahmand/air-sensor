@@ -22,7 +22,7 @@ class AirSensor:
 
 	def parseData(self, raw):
 		# to do
-		result = raw[raw.find("mq")+1 : raw.find(" -")]
+		result = raw[raw.find("q")+1 : raw.find(" -")]
 		return result
 
 	def storeDataInArray(self, data):
@@ -51,7 +51,7 @@ class AirSensor:
 			if raw is not None:
 				# print(raw)
 				data = self.parseData(raw)
-				if data is not None and len(data)>0 and len(data)<10:
+				if data is not None:# and len(data)>0 and len(data)<10:
 					print(data)
 					# storeDataInArray(data)
 			# saveData(data)
