@@ -28,15 +28,15 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		# try:
-		index = int(data[0 : data.find(":")])
-		value = int(data[data.find(":")+2 : len(data)])
-		# print(index + " len:" + str(len(index)))
-		# print(value + " len:" + str(len(value)))
-		if index == 2:
-			self.timeStamp.append(datetime.datetime.now().time())
-			self.mq2.append(value)
-			print(index + " : " + value)
+		try:
+			index = int(data[0 : data.find(":")])
+			value = int(data[data.find(":")+2 : len(data)])
+			# print(index + " len:" + str(len(index)))
+			# print(value + " len:" + str(len(value)))
+			if index == 2:
+				self.timeStamp.append(datetime.datetime.now().time())
+				self.mq2.append(value)
+				print(str(index) + " : " + str(value))
 				# case 3:
 				# 	self.mq3.append(value)
 				# case 4:
@@ -53,8 +53,8 @@ class AirSensor:
 				# 	self.mq9.append(value)
 				# case 135:
 				# 	self.mq135.append(value)
-		# except:
-		# 	print("An exception occurred")
+		except:
+			print("An exception occurred")
 		
 
 	# def saveData(data):
