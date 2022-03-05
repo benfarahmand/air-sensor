@@ -30,7 +30,7 @@ class AirSensor:
 			if raw is not None:
 				# print(raw)
 				data = self.parseData(raw)
-				print(data)
+				print(data.len())
 			# saveData(data)
 			# visualizeData(data)
 
