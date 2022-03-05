@@ -30,10 +30,10 @@ class AirSensor:
 	def storeDataInArray(self, data):
 		try:
 			index = data[0 : data.find(":")]
-			value = data[data.find(": ") : len(data)-1]
+			value = data[data.find(": ")+1 : len(data)]
 			print(index)
 			print(value)
-			if index == 2:
+			if index == '2':
 				self.timeStamp.append(datetime.datetime.now().time())
 				self.mq2.append(value)
 				print(index + " : " + value)
