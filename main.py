@@ -29,6 +29,7 @@ class AirSensor:
 
 	def storeDataInArray(self, data):
 		try:
+			print(data + " len:" + len(data))
 			index = data[0 : data.find(":")]
 			value = data[data.find(":")+2 : len(data)]
 			print(index + " len:" + len(index))
