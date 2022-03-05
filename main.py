@@ -28,28 +28,31 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		index = int(data[0 : data.find(":")])
-		value = int(data[data.find(": ") : len(data)-1])
-		if index == 2:
-			self.timeStamp.append(datetime.datetime.now().time())
-			self.mq2.append(value)
-			console.log(index + " : " + value)
-			# case 3:
-			# 	self.mq3.append(value)
-			# case 4:
-			# 	self.mq4.append(value)
-			# case 5:
-			# 	self.mq5.append(value)
-			# case 6:
-			# 	self.mq6.append(value)
-			# case 7:
-			# 	self.mq7.append(value)
-			# case 8:
-			# 	self.mq8.append(value)
-			# case 9:
-			# 	self.mq9.append(value)
-			# case 135:
-			# 	self.mq135.append(value)
+		try:
+			index = int(data[0 : data.find(":")])
+			value = int(data[data.find(": ") : len(data)-1])
+			if index == 2:
+				self.timeStamp.append(datetime.datetime.now().time())
+				self.mq2.append(value)
+				console.log(index + " : " + value)
+				# case 3:
+				# 	self.mq3.append(value)
+				# case 4:
+				# 	self.mq4.append(value)
+				# case 5:
+				# 	self.mq5.append(value)
+				# case 6:
+				# 	self.mq6.append(value)
+				# case 7:
+				# 	self.mq7.append(value)
+				# case 8:
+				# 	self.mq8.append(value)
+				# case 9:
+				# 	self.mq9.append(value)
+				# case 135:
+				# 	self.mq135.append(value)
+		except:
+			print("An exception occurred")
 		
 
 	# def saveData(data):
