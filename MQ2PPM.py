@@ -22,7 +22,7 @@ class MQ2PPM():
     GAS_SMOKE                    = 2
 
     def __init__(self, Ro=10):#, analogPin=0):
-        self.Ro = Ro
+        self.Ro = Ro #work with the default value until we further investigate the calibration code and how it works
         # self.MQ_PIN = analogPin
         # self.adc = MCP3008()
         
@@ -95,16 +95,16 @@ class MQ2PPM():
     #          gas. The sample times and the time interval between samples could be configured
     #          by changing the definition of the macros.
     ############################################################################ 
-    def MQRead(self, mq_pin):
-        rs = 0.0
+    # def MQRead(self, mq_pin):
+    #     rs = 0.0
 
-        for i in range(self.READ_SAMPLE_TIMES):
-            rs += self.MQResistanceCalculation(self.adc.read(mq_pin))
-            time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
+    #     for i in range(self.READ_SAMPLE_TIMES):
+    #         rs += self.MQResistanceCalculation(self.adc.read(mq_pin))
+    #         time.sleep(self.READ_SAMPLE_INTERVAL/1000.0)
 
-        rs = rs/self.READ_SAMPLE_TIMES
+    #     rs = rs/self.READ_SAMPLE_TIMES
 
-        return rs
+    #     return rs
      
     #########################  MQGetGasPercentage ##############################
     # Input:   rs_ro_ratio - Rs divided by Ro

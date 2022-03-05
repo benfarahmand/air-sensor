@@ -34,7 +34,8 @@ class AirSensor:
 			value = int(data[data.find(":")+2 : len(data)])
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
-				print(self.mq2ppm.MQPercentage(value))
+				# print(self.mq2ppm.MQPercentage(value))
+				print(value)
 				self.mq2.append(value)
 			if index == 3:
 				self.mq3.append(value)
