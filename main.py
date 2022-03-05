@@ -6,10 +6,10 @@ class AirSensor:
 	def __init__(self):
 		self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
 
-	def getDataFromArduino(self, ser):
+	def getDataFromArduino(self):
 		# to do
-		if ser.in_waiting > 0:
-			return ser.readline().decode('utf-8').rstrip()
+		if self.ser.in_waiting > 0:
+			return self.ser.readline().decode('utf-8').rstrip()
 
 	def parseData(self, raw):
 		# to do
@@ -26,7 +26,7 @@ class AirSensor:
 		
 		self.ser.reset_input_buffer()
 		while True:
-			raw = self.getDataFromArduino(ser)
+			raw = self.getDataFromArduino()
 			data = self.parseData(raw)
 			print(data)
 			# saveData(data)
