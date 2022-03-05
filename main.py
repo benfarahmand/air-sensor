@@ -1,5 +1,6 @@
 import serial, time
 import datetime as datetime
+from MQ2PPM import MQ2PPM
 
 class AirSensor:
 
@@ -15,7 +16,7 @@ class AirSensor:
 		self.mq8 = [] # Hydrogen
 		self.mq9 = [] # Methan, Propane, and CO
 		self.mq135 = [] # NH3, NOx, Alcohol, Benzene, Smoke, CO2
-		# self.timeTracker = 0 #used to track when to record the time stamp
+		self.mq2ppm = MQ2PPM()
 
 	def getDataFromArduino(self):
 		# to do
@@ -31,31 +32,31 @@ class AirSensor:
 		try:
 			index = int(data[0 : data.find(":")])
 			value = int(data[data.find(":")+2 : len(data)])
-			# print(index + " len:" + str(len(index)))
-			# print(value + " len:" + str(len(value)))
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
+				print(self.mq2ppm.MQPercentage(value))
 				self.mq2.append(value)
-				print(str(index) + " : " + str(value))
-				# case 3:
-				# 	self.mq3.append(value)
-				# case 4:
-				# 	self.mq4.append(value)
-				# case 5:
-				# 	self.mq5.append(value)
-				# case 6:
-				# 	self.mq6.append(value)
-				# case 7:
-				# 	self.mq7.append(value)
-				# case 8:
-				# 	self.mq8.append(value)
-				# case 9:
-				# 	self.mq9.append(value)
-				# case 135:
-				# 	self.mq135.append(value)
+			if index == 3:
+				self.mq3.append(value)
+			if index == 4:
+				self.mq4.append(value)
+			if index == 5:
+				self.mq5.append(value)
+			if index == 6:
+				self.mq6.append(value)
+			if index == 7:
+				self.mq7.append(value)
+			if index == 8:
+				self.mq8.append(value)
+			if index == 9:
+				self.mq9.append(value)
+			if index == 135:
+				self.mq135.append(value)
 		except:
 			print("An exception occurred")
 		
+	# def convertVoltageToPPM(self, data):
+		# to do
 
 	# def saveData(data):
 		# to do
@@ -67,16 +68,19 @@ class AirSensor:
 		
 		self.ser.reset_input_buffer()
 		time.sleep(2)
-		while True:
-			if self.ser.isOpen():
-				raw = self.getDataFromArduino()
-				if raw is not None:
-					# print(raw)
-					data = self.parseData(raw)
-					if data is not None and len(data)>0 and len(data)<10:
-						self.storeDataInArray(data)
-				# saveData(data)
-				# visualizeData(data)
+		try:
+			while True:
+				if self.ser.isOpen():
+					raw = self.getDataFromArduino()
+					if raw is not None:
+						# print(raw)
+						data = self.parseData(raw)
+						if data is not None and len(data)>0 and len(data)<10:
+							self.storeDataInArray(data)
+					# saveData(data)
+					# visualizeData(data)
+		except:
+			print("Exiting")
 
 a = AirSensor()
 a()
