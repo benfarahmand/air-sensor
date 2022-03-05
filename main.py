@@ -22,7 +22,7 @@ class AirSensor:
 
 	def parseData(self, raw):
 		# to do
-		result = raw[raw.find("q")+1 : raw.find(" -")]
+		result = raw[raw.find("Q")+1 : raw.find(" -")]
 		return result
 
 	def storeDataInArray(self, data):
