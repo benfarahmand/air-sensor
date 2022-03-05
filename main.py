@@ -31,7 +31,7 @@ class AirSensor:
 		try:
 			index = int(data[0 : data.find(":")])
 			value = int(data[data.find(":")+2 : len(data)])
-			# print(index)
+			print(type(index) + " - " + index)
 			# print(value)
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
