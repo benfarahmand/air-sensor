@@ -28,9 +28,9 @@ class AirSensor:
 		while True:
 			raw = self.getDataFromArduino()
 			if raw is not None:
-				print(raw)
-			# data = self.parseData(raw)
-			# print(data)
+				# print(raw)
+				data = self.parseData(raw)
+				print(data)
 			# saveData(data)
 			# visualizeData(data)
 
