@@ -15,6 +15,7 @@ class AirSensor:
 		self.mq8 = [] # Hydrogen
 		self.mq9 = [] # Methan, Propane, and CO
 		self.mq135 = [] # NH3, NOx, Alcohol, Benzene, Smoke, CO2
+		# self.timeTracker = 0 #used to track when to record the time stamp
 
 	def getDataFromArduino(self):
 		# to do
@@ -27,17 +28,32 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
+		index = data[0 : data.find(":")]
+		value = data[data.find(": ") : len(data)-1]
 		print("store")
-		# self.timeStamp.append(datetime.datetime.now().time())
-		# self.mq2.append()
-		# self.mq3.append()
-		# self.mq4.append()
-		# self.mq5.append()
-		# self.mq6.append()
-		# self.mq7.append()
-		# self.mq8.append()
-		# self.mq9.append()
-		# self.mq135.append()
+		match index:
+			case 2:
+				self.timeStamp.append(datetime.datetime.now().time())
+				self.mq2.append(value)
+				console.log(index + " : " value)
+			case 3:
+				self.mq3.append(value)
+			case 4:
+				self.mq4.append(value)
+			case 5:
+				self.mq5.append(value)
+			case 6:
+				self.mq6.append(value)
+			case 7:
+				self.mq7.append(value)
+			case 8:
+				self.mq8.append(value)
+			case 9:
+				self.mq9.append(value)
+			case 135:
+				self.mq135.append(value)
+		}
+		
 
 	# def saveData(data):
 		# to do
