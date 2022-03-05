@@ -52,7 +52,7 @@ class AirSensor:
 				# print(raw)
 				data = self.parseData(raw)
 				if data is not None and len(data)>0 and len(data)<10:
-					print(len(data))
+					print(data)
 					# storeDataInArray(data)
 			# saveData(data)
 			# visualizeData(data)
