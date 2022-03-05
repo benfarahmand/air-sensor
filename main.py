@@ -30,7 +30,6 @@ class AirSensor:
 	def storeDataInArray(self, data):
 		index = data[0 : data.find(":")]
 		value = data[data.find(": ") : len(data)-1]
-		print("store")
 		if index == 2:
 			self.timeStamp.append(datetime.datetime.now().time())
 			self.mq2.append(value)
@@ -70,7 +69,6 @@ class AirSensor:
 					# print(raw)
 					data = self.parseData(raw)
 					if data is not None and len(data)>0 and len(data)<10:
-						print(data)
 						self.storeDataInArray(data)
 				# saveData(data)
 				# visualizeData(data)
