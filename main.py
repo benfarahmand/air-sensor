@@ -34,7 +34,7 @@ class AirSensor:
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
 				self.mq2.append(value)
-				console.log(index + " : " + value)
+				print(index + " : " + value)
 				# case 3:
 				# 	self.mq3.append(value)
 				# case 4:
