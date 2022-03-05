@@ -27,6 +27,7 @@ class AirSensor:
 		self.ser.reset_input_buffer()
 		while True:
 			raw = self.getDataFromArduino()
+			print(raw)
 			data = self.parseData(raw)
 			print(data)
 			# saveData(data)
