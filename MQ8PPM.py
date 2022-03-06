@@ -3,8 +3,8 @@ import math
 
 class MQ8PPM():
 
-    RL_VALUE                     = 10        # define the load resistance on the board, in kilo ohms
-    RO_CLEAN_AIR_FACTOR          = 70        # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
+    RL_VALUE                     = 4.7#10        # define the load resistance on the board, in kilo ohms
+    RO_CLEAN_AIR_FACTOR          = 1#70        # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                              # which is derived from the chart in datasheet
 
     def __init__(self):
