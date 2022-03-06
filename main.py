@@ -29,7 +29,7 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		try:
+		# try:
 			index = int(data[0 : data.find(":")])
 			value = int(data[data.find(":")+2 : len(data)])
 			if index == 2:
@@ -53,8 +53,8 @@ class AirSensor:
 				self.mq9.append(value)
 			if index == 135:
 				self.mq135.append(value)
-		except:
-			print("An exception occurred")
+		# except:
+		# 	print("An exception occurred")
 		
 	# def convertVoltageToPPM(self, data):
 		# to do
