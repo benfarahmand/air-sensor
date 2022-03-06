@@ -1,6 +1,6 @@
 import pygame as pg
 
-def gui:
+class gui:
 
 	def __init__(self):
 		pg.init()
