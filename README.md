@@ -9,3 +9,6 @@ Credits:
 To Do:
 - better understand how calibration works to set the Ro value
 - implement equation to change Rs/Ro based on temperature and humidity
+- need to connect the temperature and humidity sensor
+- get a carbon dioxide sensor
+- get a Particulate Matter sensor
