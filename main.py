@@ -35,8 +35,9 @@ class AirSensor:
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
 		self.gui = gui()
-		self.numberOfSensors = 9 #this is how many graphs we'll need to make
-		self.maxGraphTime = 300 #seconds. any data over this amount is removed
+		self.maxGraphTime = 30 #seconds. any data over this amount is removed
+		self.seconds = 0
+		self.secondsPassed = 0
 
 	def getDataFromArduino(self):
 		# to do
@@ -50,37 +51,47 @@ class AirSensor:
 
 	def storeDataInArray(self, data):
 		try:
+			if self.secondsPassed > self.maxGraphTime: #remove the first index
+				del self.timeStamp[0]
+				del self.mq2[0]
+				del self.mq3[0]
+				del self.mq4[0]
+				del self.mq5[0]
+				del self.mq6[0]
+				del self.mq7[0]
+				del self.mq8[0]
+				del self.mq9[0]
+				del self.mq135[0]
+
 			index = int(data[0 : data.find(":")])
 			value = int(data[data.find(":")+2 : len(data)])
 			if index == 2:
-				self.timeStamp.append(datetime.datetime.now().time())
-				# print("TIME: "+str(datetime.datetime.now().time()))
-				# print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
+				self.timeStamp.append(time.time()-self.seconds)
 				self.mq2.append(self.mq2ppm.getMQPPM(value))
-			# if index == 3:
-			# 	print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
-			# 	# self.mq3.append(value)
-			# if index == 4:
-			# 	print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
-			# 	# self.mq4.append(value)
-			# if index == 5:
-			# 	print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
-			# 	# self.mq5.append(value)
-			# if index == 6:
-			# 	print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
-			# 	# self.mq6.append(value)
-			# if index == 7:
-			# 	print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
-			# 	# self.mq7.append(value)
-			# if index == 8:
-			# 	print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
-			# 	# self.mq8.append(value)
-			# if index == 9:
-			# 	print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
-			# 	# self.mq9.append(value)
-			# if index == 135:
-			# 	print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
-				# self.mq135.append(value)
+			if index == 3:
+				# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
+				self.mq3.append(self.mq3ppm.getMQPPM(value))
+			if index == 4:
+				# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
+				self.mq4.append(self.mq4ppm.getMQPPM(value))
+			if index == 5:
+				# print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
+				self.mq5.append(self.mq5ppm.getMQPPM(value))
+			if index == 6:
+				# print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
+				self.mq6.append(self.mq6ppm.getMQPPM(value))
+			if index == 7:
+				# print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
+				self.mq7.append(self.mq7ppm.getMQPPM(value))
+			if index == 8:
+				# print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
+				self.mq8.append(self.mq8ppm.getMQPPM(value))
+			if index == 9:
+				# print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
+				self.mq9.append(self.mq9ppm.getMQPPM(value))
+			if index == 135:
+				# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
+				self.mq135.append(self.mq135ppm.getMQPPM(value))
 		except:
 			print("An exception occurred")
 
@@ -89,6 +100,8 @@ class AirSensor:
 		self.ser.reset_input_buffer()
 		time.sleep(2)
 		quit = False
+		self.seconds = time.time() #when we started the program
+
 		# try:
 		while quit == False:
 			if self.ser.isOpen():
@@ -99,7 +112,12 @@ class AirSensor:
 					if data is not None and len(data)>0 and len(data)<10:
 						self.storeDataInArray(data)
 						if len(self.timeStamp) > 3:
-							quit = self.gui.draw(self.timeStamp, self.mq2)
+							quit = self.gui.draw(
+								self.timeStamp, 
+								[self.mq2,self.mq3,self.mq4,
+								self.mq5,self.mq6,self.mq7,
+								self.mq8,self.mq9,self.mq135])
+							self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
 		# except:
 		# 	print("Exiting")
 

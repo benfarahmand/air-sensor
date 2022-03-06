@@ -8,11 +8,10 @@ class guitest:
 		self.g = gui()
 		self.randomData = []
 		self.timeStamp = []
-		self.numberOfGraphs = 8
-		self.maxGraphTime = 10 #seconds. any data over this amount is removed
+		self.numberOfGraphs = 9
+		self.maxGraphTime = 300 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
-		# self.startTime = 0
 		self.maxPPM = 1000
 
 	def __call__(self):
@@ -23,7 +22,7 @@ class guitest:
 				del self.randomData[0] 
 				del self.timeStamp[0]
 				# self.seconds = time.time() #update this time
-			self.randomData.append(randrange(1000))
+			self.randomData.append({"GAS":randrange(1000),"H2":randrange(1000),"NH3":randrange(1000)})
 			# self.timeStamp.append(datetime.datetime.now())
 			self.timeStamp.append(time.time()-self.seconds)
 			time.sleep(.1)
