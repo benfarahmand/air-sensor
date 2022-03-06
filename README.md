@@ -1,6 +1,8 @@
 # air-sensor
  Working on an air quality sensor with MQ-2, MQ-3, MQ-4, MQ-5, MQ-6, MQ-7, MQ-8, MQ-9, and MQ-135
 
+ I went through all the data sheets and calculated the y=mx+b values for the relationship between R_L/R_O and PPM. You can see my work here: https://docs.google.com/spreadsheets/d/1-GPwW0J7FQ4SDkxI_SbeonQL1ulgRazS-9uETGk-KJg/edit?usp=sharing
+
 Credits:
 - To understand how to convert voltage values to PPM, I borrowed from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ
 

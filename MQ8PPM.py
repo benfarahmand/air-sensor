@@ -13,7 +13,12 @@ class MQ8PPM():
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
         # then in another equation below we will use these values to determine the ppm
-        self.H2Curve = [2.3,0.93,-1.44]    
+        
+        #something is off with these numbers from the datasheet
+        #found a different data sheet for mq8 with a different curve, trying that instead
+        # self.H2Curve = [2.3,0.93,-1.44] 
+        self.H2Curve = [2.0,-0.6,-0.4]#data sheet from sparkfun
+
     
     def getMQPPM(self, raw):
         val = {}
