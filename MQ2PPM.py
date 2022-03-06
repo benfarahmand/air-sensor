@@ -20,9 +20,9 @@ class MQ2PPM():
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
-        val["GAS_LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.LPGCurve)
-        val["CO"]       = self.MQGetGasPercentage(read/self.Ro, self.COCurve)
-        val["SMOKE"]    = self.MQGetGasPercentage(read/self.Ro, self.SmokeCurve)
+        val["GAS_LPG"]  = self.MQCalcPPM(read/self.Ro, self.LPGCurve)
+        val["CO"]       = self.MQCalcPPM(read/self.Ro, self.COCurve)
+        val["SMOKE"]    = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
         return val
         
     ######################### MQResistanceCalculation #########################
@@ -44,5 +44,5 @@ class MQ2PPM():
     #          logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
     #          value.
     ############################################################################ 
-    def MQGetPercentage(self, rs_ro_ratio, pcurve):
+    def MQCalcPPM(self, rs_ro_ratio, pcurve):
         return (math.pow(10,( ((math.log(rs_ro_ratio)-pcurve[1])/ pcurve[2]) + pcurve[0])))

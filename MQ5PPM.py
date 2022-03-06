@@ -19,8 +19,8 @@ class MQ5PPM():
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
-        val["GAS_LPG"] = self.MQGetGasPercentage(read/self.Ro, self.LPGCurve)
-        val["METHANE"] = self.MQGetGasPercentage(read/self.Ro, self.MethaneCurve)
+        val["GAS_LPG"] = self.MQCalcPPM(read/self.Ro, self.LPGCurve)
+        val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
         return val
         
     ######################### MQResistanceCalculation #########################
@@ -33,7 +33,7 @@ class MQ5PPM():
     def MQResistanceCalculation(self, raw_adc):
         return float(self.RL_VALUE*(1023.0-raw_adc)/float(raw_adc));
      
-    #########################  MQGetPercentage #################################
+    #########################  MQCalcPPM #################################
     # Input:   rs_ro_ratio - Rs divided by Ro
     #          pcurve      - pointer to the curve of the target gas
     # Output:  ppm of the target gas
@@ -42,5 +42,5 @@ class MQ5PPM():
     #          logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
     #          value.
     ############################################################################ 
-    def MQGetPercentage(self, rs_ro_ratio, pcurve):
+    def MQCalcPPM(self, rs_ro_ratio, pcurve):
         return (math.pow(10,( ((math.log(rs_ro_ratio)-pcurve[1])/ pcurve[2]) + pcurve[0])))
