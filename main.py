@@ -50,32 +50,32 @@ class AirSensor:
 			value = int(data[data.find(":")+2 : len(data)])
 			if index == 2:
 				# self.timeStamp.append(datetime.datetime.now().time())
-				print("TIME: "+datetime.datetime.now().time())
-				print("MQ2:"+self.mq2ppm.getMQPPM(value))
+				print("TIME: "+str(datetime.datetime.now().time()))
+				print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
 				# self.mq2.append(value)
 			if index == 3:
-				print("MQ3:"+self.mq3ppm.getMQPPM(value))
+				print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
 				# self.mq3.append(value)
 			if index == 4:
-				print("MQ4:"+self.mq4ppm.getMQPPM(value))
+				print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
 				# self.mq4.append(value)
 			if index == 5:
-				print("MQ5:"+self.mq5ppm.getMQPPM(value))
+				print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
 				# self.mq5.append(value)
 			if index == 6:
-				print("MQ6:"+self.mq6ppm.getMQPPM(value))
+				print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
 				# self.mq6.append(value)
 			if index == 7:
-				print("MQ7:"+self.mq7ppm.getMQPPM(value))
+				print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
 				# self.mq7.append(value)
 			if index == 8:
-				print("MQ8:"+self.mq8ppm.getMQPPM(value))
+				print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
 				# self.mq8.append(value)
 			if index == 9:
-				print("MQ9:"+self.mq9ppm.getMQPPM(value))
+				print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
 				# self.mq9.append(value)
 			if index == 135:
-				print("MQ135:"+self.mq135ppm.getMQPPM(value))
+				print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
 				# self.mq135.append(value)
 		except:
 			print("An exception occurred")
