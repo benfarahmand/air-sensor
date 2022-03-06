@@ -4,7 +4,7 @@ import math
 class MQ4PPM():
 
     RL_VALUE                     = 20      # define the load resistance on the board, in kilo ohms
-    RO_CLEAN_AIR_FACTOR          = 4.45     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
+    RO_CLEAN_AIR_FACTOR          = 4.5     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet
 
     def __init__(self):
@@ -13,13 +13,15 @@ class MQ4PPM():
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
         # then in another equation below we will use these values to determine the ppm
-        self.MethaneCurve = [0.4,1,-0.66]
+        self.MethaneCurve = [3.0,0.0,-0.35]
+        self.LPGCurve = [3.0,0.19,-0.32]
     
     
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
         val["METHANE"]  = self.MQGetPercentage(read/self.Ro, self.MethaneCurve)
+        val["GAS_LPG"]  = self.MQGetPercentage(read/self.Ro, self.LPGCurve)
         return val
         
     ######################### MQResistanceCalculation #########################
