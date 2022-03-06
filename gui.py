@@ -28,10 +28,17 @@ class gui:
 	def draw(self, time, mq2):
 		self.screen.fill(self.WHITE)
 		i = 0 
-		# while i < len(time)
-		# 	pg.draw.line(screen, self.BLACK,(time[i],mq2[i]['GAS_LPG']),(screenWidth*0.9,screenHeight*0.9))
+		while i < len(time)-1
+			pg.draw.line(screen, self.BLACK,(i,mq2[i]['GAS_LPG']),(i+1,mq2[i+1]['GAS_LPG'])
+			i = i+1
 
 		pg.display.flip()
+
+		for event in self.pg.event.get():
+			if event.type == self.pg.MOUSEBUTTONDOWN:
+				return True
+
+		return False
 
 # def clickEvent():
 

@@ -34,7 +34,7 @@ class AirSensor:
 		self.mq8ppm = MQ8PPM()
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
-		# self.gui = gui()
+		self.gui = gui()
 
 	def getDataFromArduino(self):
 		# to do
@@ -52,10 +52,9 @@ class AirSensor:
 			value = int(data[data.find(":")+2 : len(data)])
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
-				print("TIME: "+str(datetime.datetime.now().time()))
-				print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
+				# print("TIME: "+str(datetime.datetime.now().time()))
+				# print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
 				self.mq2.append(self.mq2ppm.getMQPPM(value))
-				print(self.mq2[len(self.mq2)-1]['GAS_LPG'])
 			# if index == 3:
 			# 	print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
 			# 	# self.mq3.append(value)
@@ -87,8 +86,9 @@ class AirSensor:
 		
 		self.ser.reset_input_buffer()
 		time.sleep(2)
+		quit = False
 		try:
-			while True:
+			while quit == False:
 				if self.ser.isOpen():
 					raw = self.getDataFromArduino()
 					if raw is not None:
@@ -96,8 +96,8 @@ class AirSensor:
 						data = self.parseData(raw)
 						if data is not None and len(data)>0 and len(data)<10:
 							self.storeDataInArray(data)
-							# if len(self.timeStamp) > 3:
-							# 	self.gui.draw(self.timeStamp, self.mq2)
+							if len(self.timeStamp) > 3:
+								quit = self.gui.draw(self.timeStamp, self.mq2)
 		except:
 			print("Exiting")
 
