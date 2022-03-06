@@ -8,7 +8,7 @@ class MQ4PPM():
                                             # which is derived from the chart in datasheet
 
     def __init__(self):
-        self.Ro = RO_CLEAN_AIR_FACTOR
+        self.Ro = self.RO_CLEAN_AIR_FACTOR
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
