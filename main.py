@@ -1,6 +1,14 @@
 import serial, time
 import datetime as datetime
 from MQ2PPM import MQ2PPM
+from MQ3PPM import MQ3PPM
+from MQ4PPM import MQ4PPM
+from MQ5PPM import MQ5PPM
+from MQ6PPM import MQ6PPM
+from MQ7PPM import MQ7PPM
+from MQ8PPM import MQ8PPM
+from MQ9PPM import MQ9PPM
+from MQ135PPM import MQ135PPM
 
 class AirSensor:
 
@@ -17,6 +25,14 @@ class AirSensor:
 		self.mq9 = [] # Methan, Propane, and CO
 		self.mq135 = [] # NH3, NOx, Alcohol, Benzene, Smoke, CO2
 		self.mq2ppm = MQ2PPM()
+		self.mq3ppm = MQ3PPM()
+		self.mq4ppm = MQ4PPM()
+		self.mq5ppm = MQ5PPM()
+		self.mq6ppm = MQ6PPM()
+		self.mq7ppm = MQ7PPM()
+		self.mq8ppm = MQ8PPM()
+		self.mq9ppm = MQ9PPM()
+		self.mq135ppm = MQ135PPM()
 
 	def getDataFromArduino(self):
 		# to do
@@ -35,24 +51,31 @@ class AirSensor:
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
 				print(self.mq2ppm.getMQPPM(value))
-				print(value)
-				self.mq2.append(value)
+				# self.mq2.append(value)
 			if index == 3:
-				self.mq3.append(value)
+				print(self.mq3ppm.getMQPPM(value))
+				# self.mq3.append(value)
 			if index == 4:
-				self.mq4.append(value)
+				print(self.mq4ppm.getMQPPM(value))
+				# self.mq4.append(value)
 			if index == 5:
-				self.mq5.append(value)
+				print(self.mq5ppm.getMQPPM(value))
+				# self.mq5.append(value)
 			if index == 6:
-				self.mq6.append(value)
+				print(self.mq6ppm.getMQPPM(value))
+				# self.mq6.append(value)
 			if index == 7:
-				self.mq7.append(value)
+				print(self.mq7ppm.getMQPPM(value))
+				# self.mq7.append(value)
 			if index == 8:
-				self.mq8.append(value)
+				print(self.mq8ppm.getMQPPM(value))
+				# self.mq8.append(value)
 			if index == 9:
-				self.mq9.append(value)
+				print(self.mq9ppm.getMQPPM(value))
+				# self.mq9.append(value)
 			if index == 135:
-				self.mq135.append(value)
+				print(self.mq135ppm.getMQPPM(value))
+				# self.mq135.append(value)
 		except:
 			print("An exception occurred")
 		
