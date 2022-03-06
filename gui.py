@@ -29,13 +29,14 @@ class gui:
 		self.screen.fill(self.WHITE)
 		i = 0 
 		while i < len(time) - 1:
-			pg.draw.line(screen, self.BLACK,(i,mq2[i]['GAS_LPG']),(i + 1,mq2[i + 1]['GAS_LPG']))
+			pg.draw.line(screen, self.BLACK,(i,mq2[i]['GAS_LPG']),(i + 1,mq2[i + 1]['GAS_LPG']),)
 			i += 1
 
 		pg.display.flip()
 
 		for event in self.pg.event.get():
 			if event.type == self.pg.MOUSEBUTTONDOWN:
+				print("Mouse Event Detected")
 				return True
 
 		return False

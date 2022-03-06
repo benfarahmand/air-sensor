@@ -87,19 +87,19 @@ class AirSensor:
 		self.ser.reset_input_buffer()
 		time.sleep(2)
 		quit = False
-		try:
-			while quit == False:
-				if self.ser.isOpen():
-					raw = self.getDataFromArduino()
-					if raw is not None:
-						# print(raw)
-						data = self.parseData(raw)
-						if data is not None and len(data)>0 and len(data)<10:
-							self.storeDataInArray(data)
-							if len(self.timeStamp) > 3:
-								quit = self.gui.draw(self.timeStamp, self.mq2)
-		except:
-			print("Exiting")
+		# try:
+		while quit == False:
+			if self.ser.isOpen():
+				raw = self.getDataFromArduino()
+				if raw is not None:
+					# print(raw)
+					data = self.parseData(raw)
+					if data is not None and len(data)>0 and len(data)<10:
+						self.storeDataInArray(data)
+						if len(self.timeStamp) > 3:
+							quit = self.gui.draw(self.timeStamp, self.mq2)
+		# except:
+		# 	print("Exiting")
 
 a = AirSensor()
 a()
