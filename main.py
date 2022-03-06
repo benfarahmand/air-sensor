@@ -34,7 +34,7 @@ class AirSensor:
 		self.mq8ppm = MQ8PPM()
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
-		self.gui = gui()
+		# self.gui = gui()
 
 	def getDataFromArduino(self):
 		# to do
