@@ -35,6 +35,8 @@ class AirSensor:
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
 		self.gui = gui()
+		self.numberOfSensors = 9 #this is how many graphs we'll need to make
+		self.maxGraphTime = 300 #seconds. any data over this amount is removed
 
 	def getDataFromArduino(self):
 		# to do
