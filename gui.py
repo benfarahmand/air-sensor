@@ -4,7 +4,8 @@ class gui:
 
 	def __init__(self):
 		pg.init()
-		self.myfont = pg.font.SysFont("monospace", 15)
+		self.fontsize = 15
+		self.myfont = pg.font.SysFont("monospace", self.fontsize)
 
 		
 		#define some colors
@@ -47,9 +48,10 @@ class gui:
 			
 			pg.draw.line(self.screen, self.BLACK, (x1,y+height-y1),(x2,y+height-y2))
 			if i == len(time) - 2:
-				pg.draw.line(self.screen, self.BLACK, (x2,y+2),(x2,y+height-2),2)
-				label = self.myfont.render(str())
-				self.screen.blit
+				pg.draw.line(self.screen, self.BLACK, (x2,y+2),(x2,y+height-2),1)
+				pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
+				label = self.myfont.render(str(round(data[i + 1])),1,self.BLACK)
+				self.screen.blit(label,(x2+5,y+height/2-self.fontsize/2))
 			# pg.draw.line(self.screen, self.RED , (i,round(mq2[i]['GAS_LPG'])) , (i + 1,round(mq2[i + 1]['GAS_LPG'])))
 			# pg.draw.line(self.screen, self.GREEN , (i,round(mq2[i]['CARBON_MONOXIDE'])) , (i + 1,round(mq2[i + 1]['CARBON_MONOXIDE'])))
 			# pg.draw.line(self.screen, self.BLUE , (i,round(mq2[i]['SMOKE'])) , (i + 1,round(mq2[i + 1]['SMOKE'])))
