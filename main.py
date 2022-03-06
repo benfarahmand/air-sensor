@@ -53,7 +53,7 @@ class AirSensor:
 			if index == 2:
 				self.timeStamp.append(datetime.datetime.now().time())
 				# print("TIME: "+str(datetime.datetime.now().time()))
-				print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
+				# print("MQ2:"+str(self.mq2ppm.getMQPPM(value)))
 				self.mq2.append(self.mq2ppm.getMQPPM(value))
 			# if index == 3:
 			# 	print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
