@@ -16,8 +16,8 @@ class MQ3PPM():
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
         # then in another equation below we will use these values to determine the ppm
-        self.AlcoholCurve = [-1.0,0.36,-0.64]
-    
+        # self.AlcoholCurve = [-1.0,0.36,-0.64] #v1
+        self.AlcoholCurve = [1.7,-0.74,-0.91] #v2
     
     def getMQPPM(self, raw):
         val = {}
