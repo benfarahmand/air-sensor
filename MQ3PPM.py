@@ -3,11 +3,13 @@ import math
 
 class MQ3PPM():
 
-    RL_VALUE                     = 200      # define the load resistance on the board, in kilo ohms
-    RO_CLEAN_AIR_FACTOR          = 60     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
+    RL_VALUE                     = 4.7#200      # define the load resistance on the board, in kilo ohms
+    RO_CLEAN_AIR_FACTOR          = 1#60     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet
-    MIN_PPM = 0.05 #unclear if this is accurate. got it from data sheet.
-    MAX_PPM = 10
+    # MIN_PPM = 0.05 #unclear if this is accurate. got it from data sheet.
+    # MAX_PPM = 10
+    MIN_PPM = 50 #unclear if this is accurate. got it from data sheet.
+    MAX_PPM = 500
     LABEL = "MQ3"
 
     def __init__(self):
