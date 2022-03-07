@@ -8,6 +8,7 @@ class MQ7PPM():
                                              # which is derived from the chart in datasheet
     MIN_PPM = 20 #unclear if this is accurate. got it from data sheet.
     MAX_PPM = 2000
+    LABEL = "MQ7"
 
     def __init__(self):
         self.Ro = self.RO_CLEAN_AIR_FACTOR

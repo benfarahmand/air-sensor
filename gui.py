@@ -44,7 +44,9 @@ class gui:
 		# Convert the 0-1 range into a value in the right range.
 		return rightMin + (valueScaled * rightSpan)
 
-	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data):
+	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
+		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
+		self.screen.blit(sLabel,(2,y+height))
 		i = 0
 		while i < len(time) - 2:
 			#scale the lines to the appropirate width and height
@@ -53,14 +55,14 @@ class gui:
 			
 			# if there are multiple lines per sensor, draw all the lines
 			j = 0 
-			print("checking data length "+str(len(data[i])))
+			# print("checking data length "+str(len(data[i])))
 			for gas in data[i]:
 				y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 				pg.draw.line(self.screen, self.graphColors[j], (x1,y+height-y1-self.fontsize),(x2,y+height-y2-self.fontsize))
 				j+=1
 
-			if i == len(time) - 2:
+			if i == len(time) - 3:
 				pg.draw.line(self.screen, self.BLACK, (x2,y),(x2,y+height-self.fontsize),1)
 				pg.draw.line(self.screen, self.BLACK, (0,y+height-self.fontsize),(x2,y+height-self.fontsize),1)
 				k = 0
@@ -68,22 +70,23 @@ class gui:
 					timelabel = self.myfont.render(str(k),1,self.BLACK)
 					self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
 					k+=1
-				# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
-				# label = self.myfont.render(str(round(data[i + 1])),1,self.BLACK)
-				# self.screen.blit(label,(x2+5,y+height/2-self.fontsize/2))
+				pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
+				ppmLabel = self.myfont.render(str(round(data[i + 1])),1,self.BLACK)
+				self.screen.blit(ppmLabel,(x2+5,y+height/2-self.fontsize/2))
+
 			# pg.draw.line(self.screen, self.RED , (i,round(mq2[i]['GAS_LPG'])) , (i + 1,round(mq2[i + 1]['GAS_LPG'])))
 			# pg.draw.line(self.screen, self.GREEN , (i,round(mq2[i]['CARBON_MONOXIDE'])) , (i + 1,round(mq2[i + 1]['CARBON_MONOXIDE'])))
 			# pg.draw.line(self.screen, self.BLUE , (i,round(mq2[i]['SMOKE'])) , (i + 1,round(mq2[i + 1]['SMOKE'])))
 			i += 1
 
 
-	def draw(self, time, data, maxX, maxY, minY):
+	def draw(self, time, data, maxX, maxY, minY, label):
 		self.screen.fill(self.WHITE)
 		smallGraphWidth = self.screenWidth*0.25
 		smallGraphHeight = self.screenHeight/len(data)
 		i = 0
-		for sensordata, max_ppm, min_ppm in zip(data, maxY, minY):
-			self.smallgraph(0 , i*smallGraphHeight , smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata)
+		for sensordata, max_ppm, min_ppm, sensorLabel in zip(data, maxY, minY, label):
+			self.smallgraph(0 , i*smallGraphHeight , smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata, sensorLabel)
 			i += 1
 		
 
