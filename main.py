@@ -74,6 +74,7 @@ class AirSensor:
 			if index == 3:
 				# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
 				self.mq3.append(self.mq3ppm.getMQPPM(value))
+				print(str(value)+" : "+str(self.mq3[len(self.mq3)-1]))
 			if index == 4:
 				# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
 				self.mq4.append(self.mq4ppm.getMQPPM(value))
