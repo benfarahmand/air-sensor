@@ -46,7 +46,7 @@ class gui:
 
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data):
 		i = 0
-		while i < len(time) - 1:
+		while i < len(time) - 2:
 			#scale the lines to the appropirate width and height
 			x1 = self.translate(time[i],time[0],maxX+time[0],0,width)
 			x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)
