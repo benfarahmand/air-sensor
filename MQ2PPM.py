@@ -7,7 +7,7 @@ class MQ2PPM():
     RO_CLEAN_AIR_FACTOR          = 9.83     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet
     MIN_PPM = 200 #unclear if this is accurate. got it from data sheet.
-    MAX_PPM = 5000
+    MAX_PPM = 10000
     LABEL = "MQ2"
 
     def __init__(self):

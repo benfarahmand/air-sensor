@@ -35,7 +35,7 @@ class AirSensor:
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
 		self.gui = gui()
-		self.maxGraphTime = 30 #seconds. any data over this amount is removed
+		self.maxGraphTime = 90 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
 

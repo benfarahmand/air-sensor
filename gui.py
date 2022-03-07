@@ -10,6 +10,7 @@ class gui:
 		
 		#define some colors
 		self.BLACK = (0,0,0)
+		self.GRAY = (150,150,150)
 		self.WHITE = (255,255,255)
 		self.BLUE = (0, 0, 255)
 		self.GREEN = (0, 255, 0)
@@ -63,7 +64,7 @@ class gui:
 				if i == len(data) - 2:
 					ppmLabel = self.myfont.render(str(round(data[i][gas]))+"ppm",1,self.graphColors[j])
 					# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
-					self.screen.blit(ppmLabel,(25+j*ppmLabel.get_width(),y))
+					self.screen.blit(ppmLabel,(50+j*ppmLabel.get_width()*2,y))
 				j+=1
 
 			if i == len(data) - 2:
@@ -82,11 +83,11 @@ class gui:
 
 	def draw(self, time, data, maxX, maxY, minY, label):
 		self.screen.fill(self.WHITE)
-		smallGraphWidth = self.screenWidth*0.25
+		smallGraphWidth = self.screenWidth*0.5
 		smallGraphHeight = self.screenHeight/len(data)
 		i = 0
 		for sensordata, max_ppm, min_ppm, sensorLabel in zip(data, maxY, minY, label):
-			self.smallgraph(0 , i*smallGraphHeight , smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata, sensorLabel)
+			self.smallgraph(0 , i*smallGraphHeight+self.fontsize, smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata, sensorLabel)
 			i += 1
 		
 
