@@ -71,7 +71,7 @@ class gui:
 					self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
 					k+=1
 				pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
-				ppmLabel = self.myfont.render(str(round(data[i + 1])),1,self.BLACK)
+				ppmLabel = self.myfont.render(str(round(data[i])),1,self.BLACK)
 				self.screen.blit(ppmLabel,(x2+5,y+height/2-self.fontsize/2))
 
 			# pg.draw.line(self.screen, self.RED , (i,round(mq2[i]['GAS_LPG'])) , (i + 1,round(mq2[i + 1]['GAS_LPG'])))
