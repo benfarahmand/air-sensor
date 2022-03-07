@@ -51,7 +51,7 @@ class AirSensor:
 
 	def storeDataInArray(self, data):
 		try:
-			print(str(self.secondsPassed))
+			# print(str(self.secondsPassed))
 			if self.secondsPassed > self.maxGraphTime: #remove the first index
 				# print("removed index")
 				del self.timeStamp[0]
