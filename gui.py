@@ -49,7 +49,7 @@ class gui:
 		# print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
 		while (i < len(data) - 1 and i < len(time) - 1):
-			#scale the lines to the appropirate width and height
+			# scale the lines to the appropirate width and height
 			x1 = self.translate(time[i],time[0],maxX+time[0],0,width)
 			x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)
 			# print("i: "+str(i))
@@ -64,7 +64,7 @@ class gui:
 				if i == len(data) - 2:
 					ppmLabel = self.myfont.render(str(round(data[i][gas]))+"ppm",1,self.graphColors[j])
 					# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
-					self.screen.blit(ppmLabel,(50+j*ppmLabel.get_width()*2,y))
+					self.screen.blit(ppmLabel,(50+j*ppmLabel.get_width(),y))
 				j+=1
 
 			if i == len(data) - 2:
