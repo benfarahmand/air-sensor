@@ -50,53 +50,53 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		try:
+		# try:
 			# print(str(self.secondsPassed))
-			if self.secondsPassed > self.maxGraphTime: #remove the first index
-				# print("removed index")
-				del self.timeStamp[0] #will need to improve this logic, because it's removing too many indexes
-				del self.mq2[0]
-				del self.mq3[0]
-				del self.mq4[0]
-				del self.mq5[0]
-				del self.mq6[0]
-				del self.mq7[0]
-				del self.mq8[0]
-				del self.mq9[0]
-				del self.mq135[0]
+		if self.secondsPassed > self.maxGraphTime: #remove the first index
+			# print("removed index")
+			del self.timeStamp[0] #will need to improve this logic, because it's removing too many indexes
+			del self.mq2[0]
+			del self.mq3[0]
+			del self.mq4[0]
+			del self.mq5[0]
+			del self.mq6[0]
+			del self.mq7[0]
+			del self.mq8[0]
+			del self.mq9[0]
+			del self.mq135[0]
 
-			index = int(data[0 : data.find(":")])
-			value = int(data[data.find(":")+2 : len(data)])
-			if index == 2:
-				self.timeStamp.append(time.time()-self.seconds)
-				self.mq2.append(self.mq2ppm.getMQPPM(value))
-				# print(str(value)+" : "+str(self.mq2[len(self.mq2)-1]))
-			if index == 3:
-				# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
-				self.mq3.append(self.mq3ppm.getMQPPM(value))
-			if index == 4:
-				# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
-				self.mq4.append(self.mq4ppm.getMQPPM(value))
-			if index == 5:
-				# print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
-				self.mq5.append(self.mq5ppm.getMQPPM(value))
-			if index == 6:
-				# print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
-				self.mq6.append(self.mq6ppm.getMQPPM(value))
-			if index == 7:
-				# print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
-				self.mq7.append(self.mq7ppm.getMQPPM(value))
-			if index == 8:
-				# print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
-				self.mq8.append(self.mq8ppm.getMQPPM(value))
-			if index == 9:
-				# print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
-				self.mq9.append(self.mq9ppm.getMQPPM(value))
-			if index == 135:
-				# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
-				self.mq135.append(self.mq135ppm.getMQPPM(value))
-		except:
-			print("An exception occurred")
+		index = int(data[0 : data.find(":")])
+		value = int(data[data.find(":")+2 : len(data)])
+		if index == 2:
+			self.timeStamp.append(time.time()-self.seconds)
+			self.mq2.append(self.mq2ppm.getMQPPM(value))
+			# print(str(value)+" : "+str(self.mq2[len(self.mq2)-1]))
+		if index == 3:
+			# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
+			self.mq3.append(self.mq3ppm.getMQPPM(value))
+		if index == 4:
+			# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
+			self.mq4.append(self.mq4ppm.getMQPPM(value))
+		if index == 5:
+			# print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
+			self.mq5.append(self.mq5ppm.getMQPPM(value))
+		if index == 6:
+			# print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
+			self.mq6.append(self.mq6ppm.getMQPPM(value))
+		if index == 7:
+			# print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
+			self.mq7.append(self.mq7ppm.getMQPPM(value))
+		if index == 8:
+			# print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
+			self.mq8.append(self.mq8ppm.getMQPPM(value))
+		if index == 9:
+			# print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
+			self.mq9.append(self.mq9ppm.getMQPPM(value))
+		if index == 135:
+			# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
+			self.mq135.append(self.mq135ppm.getMQPPM(value))
+		# except:
+		# 	print("An exception occurred")
 
 	def __call__(self):
 		
@@ -105,38 +105,38 @@ class AirSensor:
 		quit = False
 		self.seconds = time.time() #when we started the program
 
-		try:
-			while quit == False:
-				if self.ser.isOpen():
-					raw = self.getDataFromArduino()
-					if raw is not None:
-						# print(raw)
-						data = self.parseData(raw)
-						if data is not None and len(data)>0 and len(data)<10:
-							self.storeDataInArray(data)
-							l = 4
-							if (len(self.timeStamp) > l and 
-								len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
-								len(self.mq5) > l and len(self.mq6) > l and len(self.mq7) > l and
-								len(self.mq8) > l and len(self.mq9) > l and len(self.mq135) > l):
-								quit = self.gui.draw(
-									self.timeStamp, 
-									[self.mq2,self.mq3,self.mq4,
-									self.mq5,self.mq6,self.mq7,
-									self.mq8,self.mq9,self.mq135],
-									self.maxGraphTime,
-									[self.mq2ppm.MAX_PPM,self.mq3ppm.MAX_PPM,self.mq4ppm.MAX_PPM,
-									self.mq5ppm.MAX_PPM,self.mq6ppm.MAX_PPM,self.mq7ppm.MAX_PPM,
-									self.mq8ppm.MAX_PPM,self.mq9ppm.MAX_PPM,self.mq135ppm.MAX_PPM],
-									[self.mq2ppm.MIN_PPM,self.mq3ppm.MIN_PPM,self.mq4ppm.MIN_PPM,
-									self.mq5ppm.MIN_PPM,self.mq6ppm.MIN_PPM,self.mq7ppm.MIN_PPM,
-									self.mq8ppm.MIN_PPM,self.mq9ppm.MIN_PPM,self.mq135ppm.MIN_PPM],
-									[self.mq2ppm.LABEL,self.mq3ppm.LABEL,self.mq4ppm.LABEL,
-									self.mq5ppm.LABEL,self.mq6ppm.LABEL,self.mq7ppm.LABEL,
-									self.mq8ppm.LABEL,self.mq9ppm.LABEL,self.mq135ppm.LABEL])
-								self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
-		except:
-			print("Exiting")
+		# try:
+		while quit == False:
+			if self.ser.isOpen():
+				raw = self.getDataFromArduino()
+				if raw is not None:
+					# print(raw)
+					data = self.parseData(raw)
+					if data is not None and len(data)>0 and len(data)<10:
+						self.storeDataInArray(data)
+						l = 4
+						if (len(self.timeStamp) > l and 
+							len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
+							len(self.mq5) > l and len(self.mq6) > l and len(self.mq7) > l and
+							len(self.mq8) > l and len(self.mq9) > l and len(self.mq135) > l):
+							quit = self.gui.draw(
+								self.timeStamp, 
+								[self.mq2,self.mq3,self.mq4,
+								self.mq5,self.mq6,self.mq7,
+								self.mq8,self.mq9,self.mq135],
+								self.maxGraphTime,
+								[self.mq2ppm.MAX_PPM,self.mq3ppm.MAX_PPM,self.mq4ppm.MAX_PPM,
+								self.mq5ppm.MAX_PPM,self.mq6ppm.MAX_PPM,self.mq7ppm.MAX_PPM,
+								self.mq8ppm.MAX_PPM,self.mq9ppm.MAX_PPM,self.mq135ppm.MAX_PPM],
+								[self.mq2ppm.MIN_PPM,self.mq3ppm.MIN_PPM,self.mq4ppm.MIN_PPM,
+								self.mq5ppm.MIN_PPM,self.mq6ppm.MIN_PPM,self.mq7ppm.MIN_PPM,
+								self.mq8ppm.MIN_PPM,self.mq9ppm.MIN_PPM,self.mq135ppm.MIN_PPM],
+								[self.mq2ppm.LABEL,self.mq3ppm.LABEL,self.mq4ppm.LABEL,
+								self.mq5ppm.LABEL,self.mq6ppm.LABEL,self.mq7ppm.LABEL,
+								self.mq8ppm.LABEL,self.mq9ppm.LABEL,self.mq135ppm.LABEL])
+							self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
+		# except:
+		# 	print("Exiting")
 
 a = AirSensor()
 a()
