@@ -62,9 +62,9 @@ class gui:
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 				pg.draw.line(self.screen, self.graphColors[j], (x1,y+height-y1-self.fontsize),(x2,y+height-y2-self.fontsize))
 				if i == len(data) - 2:
-					ppmLabel = self.myfont.render(str(round(data[i][gas]))+"ppm",1,self.graphColors[j])
+					ppmLabel = self.myfont.render(str(gas)+": "+str(round(data[i][gas]))+"ppm ",1,self.graphColors[j])
 					# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
-					self.screen.blit(ppmLabel,(50+j*ppmLabel.get_width(),y))
+					self.screen.blit(ppmLabel,(60+j*ppmLabel.get_width(),y-self.fontsize/2))
 				j+=1
 
 			if i == len(data) - 2:
