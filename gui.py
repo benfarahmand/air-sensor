@@ -47,17 +47,17 @@ class gui:
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
 		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
 		self.screen.blit(sLabel,(2,y+height))
-		print(sensorLabel +" Data Length: "+str(len(data)))
+		# print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
-		while i < len(time) - 1:
+		while (i < len(data) - 1 and i < len(time) - 1):
 			#scale the lines to the appropirate width and height
 			x1 = self.translate(time[i],time[0],maxX+time[0],0,width)
 			x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)
-			print("i: "+str(i))
+			# print("i: "+str(i))
 			# if there are multiple lines per sensor, draw all the lines
 			j = 0 
 			for gas in data[i]:
-				print(sensorLabel +": "+str(gas))
+				# print(sensorLabel +": "+str(gas))
 				# print("checking data length "+str(len(data[i][gas])))
 				y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
@@ -67,7 +67,7 @@ class gui:
 					self.screen.blit(ppmLabel,(x2+5,y+height/2-self.fontsize/2))
 				j+=1
 
-			if i == len(time) - 2:
+			if i == len(data) - 2:
 				pg.draw.line(self.screen, self.BLACK, (x2,y),(x2,y+height-self.fontsize),1)
 				pg.draw.line(self.screen, self.BLACK, (0,y+height-self.fontsize),(x2,y+height-self.fontsize),1)
 				k = 0
