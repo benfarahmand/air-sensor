@@ -44,7 +44,7 @@ class gui:
 		# Convert the 0-1 range into a value in the right range.
 		return rightMin + (valueScaled * rightSpan)
 
-	def smallgraph(self, x, y, width, height, maxX, maxY, time, data):
+	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data):
 		i = 0
 		while i < len(time) - 1:
 			#scale the lines to the appropirate width and height
@@ -76,13 +76,13 @@ class gui:
 			i += 1
 
 
-	def draw(self, time, data, maxX, maxY):
+	def draw(self, time, data, maxX, maxY, minY):
 		self.screen.fill(self.WHITE)
 		smallGraphWidth = self.screenWidth*0.25
 		smallGraphHeight = self.screenHeight/len(data)
 		i = 0
-		for sensordata in data:
-			self.smallgraph(0 , i*smallGraphHeight , smallGraphWidth , smallGraphHeight , maxX , maxY , time , sensordata)
+		for sensordata, max_ppm, min_ppm in zip(data, maxY, minY):
+			self.smallgraph(0 , i*smallGraphHeight , smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata)
 			i += 1
 		
 

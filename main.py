@@ -116,7 +116,14 @@ class AirSensor:
 								self.timeStamp, 
 								[self.mq2,self.mq3,self.mq4,
 								self.mq5,self.mq6,self.mq7,
-								self.mq8,self.mq9,self.mq135])
+								self.mq8,self.mq9,self.mq135],
+								self.maxGraphTime,
+								[self.mq2ppm.MAX_PPM,self.mq3ppm.MAX_PPM,self.mq4ppm.MAX_PPM,
+								self.mq5ppm.MAX_PPM,self.mq6ppm.MAX_PPM,self.mq7ppm.MAX_PPM,
+								self.mq8ppm.MAX_PPM,self.mq9ppm.MAX_PPM,self.mq135ppm.MAX_PPM],
+								[self.mq2ppm.MIN_PPM,self.mq3ppm.MIN_PPM,self.mq4ppm.MIN_PPM,
+								self.mq5ppm.MIN_PPM,self.mq6ppm.MIN_PPM,self.mq7ppm.MIN_PPM,
+								self.mq8ppm.MIN_PPM,self.mq9ppm.MIN_PPM,self.mq135ppm.MIN_PPM])
 							self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
 		# except:
 		# 	print("Exiting")
