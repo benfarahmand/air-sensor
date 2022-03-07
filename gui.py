@@ -47,15 +47,15 @@ class gui:
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
 		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
 		self.screen.blit(sLabel,(2,y+height))
+		print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
 		while i < len(time) - 1:
 			#scale the lines to the appropirate width and height
 			x1 = self.translate(time[i],time[0],maxX+time[0],0,width)
 			x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)
-			
+			print("i: "+str(i))
 			# if there are multiple lines per sensor, draw all the lines
 			j = 0 
-			# print("checking data length "+str(len(data[i])))
 			for gas in data[i]:
 				print(sensorLabel +": "+str(gas))
 				# print("checking data length "+str(len(data[i][gas])))
