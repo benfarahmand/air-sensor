@@ -23,9 +23,9 @@ class MQ2PPM():
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
-        val["PROPANE"] = self.MQCalcPPM(read/self.Ro, self.LPGCurve)
-        val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.COCurve)
-        val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
+        val["PROPANE"] = self.MQCalcPPM(read/self.Ro, self.PropaneCurve)
+        val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
+        val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
         return val
         
     ######################### MQResistanceCalculation #########################
