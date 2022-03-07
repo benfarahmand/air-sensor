@@ -3,11 +3,20 @@ import math
 
 class MQ2PPM():
 
-    RL_VALUE                     = 4.7        # define the load resistance on the board, in kilo ohms
-    RO_CLEAN_AIR_FACTOR          = 1     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
-                                            # which is derived from the chart in datasheet
-    MIN_PPM = 300 #unclear if this is accurate. got it from data sheet.
+    CALIBARAION_SAMPLE_TIMES = 50
+    CALIBRATION_SAMPLE_INTERVAL = 500
+
+    # v1
+    RL_VALUE = 5
+    RO_CLEAN_AIR_FACTOR = 9.9
+    MIN_PPM = 200 #unclear if this is accurate. got it from data sheet.
     MAX_PPM = 10000
+    #v2
+    # RL_VALUE                     = 4.7        # define the load resistance on the board, in kilo ohms
+    # RO_CLEAN_AIR_FACTOR          = 1     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
+                                            # which is derived from the chart in datasheet
+    # MIN_PPM = 300 #unclear if this is accurate. got it from data sheet.
+    # MAX_PPM = 10000
     LABEL = "MQ2"
 
     def __init__(self):
@@ -16,17 +25,34 @@ class MQ2PPM():
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
         # then in another equation below we will use these values to determine the ppm
-        self.PropaneCurve = [2.48,-0.66,-0.7]    
-        self.MethaneCurve = [2.48,-0.51,-0.64]     
-        self.AlcoholCurve =[2.48,-0.36,-0.56]   
+        
+        V1
+        self.PropaneCurve = [2.3,0.23,-0.48]    
+
+        #v2
+        # self.PropaneCurve = [2.48,-0.66,-0.7]    
+        # self.MethaneCurve = [2.48,-0.51,-0.64]     
+        # self.AlcoholCurve =[2.48,-0.36,-0.56]   
     
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
         val["PROPANE"] = self.MQCalcPPM(read/self.Ro, self.PropaneCurve)
-        val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
-        val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
+        # val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
+        # val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
         return val
+
+     def MQCalibration(self, mq_pin):
+        val = 0.0
+        for i in range(self.CALIBARAION_SAMPLE_TIMES):
+            val += self.MQResistanceCalculation(self.mcp.read_adc(mq_pin))
+            time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+
+        val = val / self.CALIBARAION_SAMPLE_TIMES
+
+        val = val / self.RO_CLEAN_AIR_FACTOR
+
+        return val;
         
     ######################### MQResistanceCalculation #########################
     # Input:   raw_adc - raw value read from arduino, which represents the voltage

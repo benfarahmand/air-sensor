@@ -20,4 +20,4 @@ To Do:
 
 
 Credits:
-- To understand how to convert voltage values to PPM, I borrowed from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ
+- To understand how to convert voltage values to PPM, I borrowed from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ <- running into issues following this tutorial. Trying this one instead: https://github.com/shubham0490/MQ-sensor-ppm-conversion

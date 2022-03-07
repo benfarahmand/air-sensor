@@ -99,6 +99,10 @@ class AirSensor:
 		except:
 			print("An exception occurred")
 
+	# def sensorCalibration():
+		
+
+		
 	def __call__(self):
 		
 		self.ser.reset_input_buffer()
