@@ -112,7 +112,7 @@ class AirSensor:
 					data = self.parseData(raw)
 					if data is not None and len(data)>0 and len(data)<10:
 						self.storeDataInArray(data)
-						if len(self.timeStamp) > 3:
+						if len(self.timeStamp) > 6:
 							quit = self.gui.draw(
 								self.timeStamp, 
 								[self.mq2,self.mq3,self.mq4,

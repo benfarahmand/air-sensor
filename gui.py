@@ -58,7 +58,7 @@ class gui:
 			# print("checking data length "+str(len(data[i])))
 			for gas in data[i]:
 				print(str(gas))
-				print("checking data length "+str(len(data[i][gas])))
+				# print("checking data length "+str(len(data[i][gas])))
 				y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 				pg.draw.line(self.screen, self.graphColors[j], (x1,y+height-y1-self.fontsize),(x2,y+height-y2-self.fontsize))
