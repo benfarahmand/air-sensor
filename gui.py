@@ -28,7 +28,7 @@ class gui:
 		self.screenHeight = 480
 
 		self.size = (self.screenWidth, self.screenHeight)
-		self.screen = pg.display.set_mode(self.size)#, pg.FULLSCREEN)
+		self.screen = pg.display.set_mode(self.size, pg.FULLSCREEN)
 
 		# Used to manage how fast the screen updates
 		self.clock = pg.time.Clock()
