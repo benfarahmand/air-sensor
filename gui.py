@@ -45,8 +45,6 @@ class gui:
 		return rightMin + (valueScaled * rightSpan)
 
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
-		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
-		self.screen.blit(sLabel,(2,y+height))
 		# print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
 		while (i < len(data) - 1 and i < len(time) - 1):
@@ -62,9 +60,10 @@ class gui:
 				y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 				pg.draw.line(self.screen, self.graphColors[j], (x1,y+height-y1-self.fontsize),(x2,y+height-y2-self.fontsize))
-				if i == len(time) - 2:
-					ppmLabel = self.myfont.render(str(round(data[i][gas])),1,self.graphColors[j])
-					self.screen.blit(ppmLabel,(x2+5,y+height/2-self.fontsize/2))
+				if i == len(data) - 2:
+					ppmLabel = self.myfont.render(str(round(data[i][gas])+"ppm"),1,self.graphColors[j])
+					# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
+					self.screen.blit(ppmLabel,(25+j*ppmLabel.get_width(),y))
 				j+=1
 
 			if i == len(data) - 2:
@@ -75,12 +74,9 @@ class gui:
 					timelabel = self.myfont.render(str(k),1,self.BLACK)
 					self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
 					k+=1
-				pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
-				
-
-			# pg.draw.line(self.screen, self.RED , (i,round(mq2[i]['GAS_LPG'])) , (i + 1,round(mq2[i + 1]['GAS_LPG'])))
-			# pg.draw.line(self.screen, self.GREEN , (i,round(mq2[i]['CARBON_MONOXIDE'])) , (i + 1,round(mq2[i + 1]['CARBON_MONOXIDE'])))
-			# pg.draw.line(self.screen, self.BLUE , (i,round(mq2[i]['SMOKE'])) , (i + 1,round(mq2[i + 1]['SMOKE'])))
+				# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
+				sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
+				self.screen.blit(sLabel,(2,y))
 			i += 1
 
 
