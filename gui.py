@@ -53,6 +53,7 @@ class gui:
 			
 			# if there are multiple lines per sensor, draw all the lines
 			j = 0 
+			print("checking data length "+str(len(data[i])))
 			for gas in data[i]:
 				y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 				y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
