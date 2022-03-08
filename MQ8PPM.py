@@ -17,6 +17,7 @@ class MQ8PPM():
         self.calibrationValue = 0.0
         self.calibrationSampleCount = 0
         self.isCalibrationDone = False
+        self.sensorNumber = 8
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out

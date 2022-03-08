@@ -17,6 +17,7 @@ class MQ4PPM():
         self.calibrationValue = 0.0
         self.calibrationSampleCount = 0
         self.isCalibrationDone = False
+        self.sensorNumber = 4
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
