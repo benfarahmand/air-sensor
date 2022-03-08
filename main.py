@@ -113,22 +113,22 @@ class AirSensor:
 		value = int(data[data.find(":")+2 : len(data)])
 		if index == 2 and self.mq2ppm.isCalibrationDone == False:
 			self.mq2ppm.MQCalibration(value)
-		# if index == 3 and self.mq3ppm.isCalibrationDone == False:
-		# 	self.mq3ppm.MQCalibration(value)
-		# if index == 4 and self.mq4ppm.isCalibrationDone == False:
-		# 	self.mq4ppm.MQCalibration(value)
-		# if index == 5 and self.mq5ppm.isCalibrationDone == False:
-		# 	self.mq5ppm.MQCalibration(value)
-		# if index == 6 and self.mq6ppm.isCalibrationDone == False:
-		# 	self.mq6ppm.MQCalibration(value)
-		# if index == 7 and self.mq7ppm.isCalibrationDone == False:
-		# 	self.mq7ppm.MQCalibration(value)
-		# if index == 8 and self.mq8ppm.isCalibrationDone == False:
-		# 	self.mq8ppm.MQCalibration(value)
-		# if index == 9 and self.mq9ppm.isCalibrationDone == False:
-		# 	self.mq9ppm.MQCalibration(value)
-		# if index == 135 and self.mq135ppm.isCalibrationDone == False:
-		# 	self.mq135ppm.MQCalibration(value)
+		if index == 3 and self.mq3ppm.isCalibrationDone == False:
+			self.mq3ppm.MQCalibration(value)
+		if index == 4 and self.mq4ppm.isCalibrationDone == False:
+			self.mq4ppm.MQCalibration(value)
+		if index == 5 and self.mq5ppm.isCalibrationDone == False:
+			self.mq5ppm.MQCalibration(value)
+		if index == 6 and self.mq6ppm.isCalibrationDone == False:
+			self.mq6ppm.MQCalibration(value)
+		if index == 7 and self.mq7ppm.isCalibrationDone == False:
+			self.mq7ppm.MQCalibration(value)
+		if index == 8 and self.mq8ppm.isCalibrationDone == False:
+			self.mq8ppm.MQCalibration(value)
+		if index == 9 and self.mq9ppm.isCalibrationDone == False:
+			self.mq9ppm.MQCalibration(value)
+		if index == 135 and self.mq135ppm.isCalibrationDone == False:
+			self.mq135ppm.MQCalibration(value)
 
 		
 	def __call__(self):

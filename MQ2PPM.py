@@ -49,12 +49,9 @@ class MQ2PPM():
    
 
     def MQCalibration(self, raw):
-        # val = 0.0
-        # for i in range(self.CALIBARAION_SAMPLE_TIMES):
         self.calibrationValue += self.MQResistanceCalculation(raw)
         self.calibrationSampleCount +=1
         print(self.LABEL + ": "+str(self.calibrationSampleCount))
-            # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
         if self.calibrationSampleCount == self.CALIBRATION_SAMPLE_TIMES:
             self.calibrationValue = self.calibrationValue / self.CALIBRATION_SAMPLE_TIMES
 
