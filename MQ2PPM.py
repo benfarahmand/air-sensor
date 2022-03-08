@@ -1,5 +1,6 @@
 import time
 import math
+from MQFunctions import MQFunctions
 
 class MQ2PPM(MQFunctions):
 
