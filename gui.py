@@ -89,7 +89,7 @@ class gui:
 		i = 0
 		for sensordata, max_ppm, min_ppm, sensorLabel in zip(data, maxY, minY, label):
 			self.smallgraph(self.screenWidth*0.5 , 
-				i*smallGraphHeight, 
+				i*smallGraphHeight+5, 
 				smallGraphWidth , 
 				smallGraphHeight , 
 				maxX , max_ppm, min_ppm , time , 
