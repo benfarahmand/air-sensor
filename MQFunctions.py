@@ -14,7 +14,7 @@ class MQFunctions(object):
         self.gases = gases
     	#nothing
 
-     def getMQPPM(self, raw):
+    def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
         for gasName, pCurve in self.gases:
