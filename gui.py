@@ -54,7 +54,7 @@ class gui:
 		k = 0
 		while k < 5:
 			timelabel = self.myfont.render(str(k),1,self.BLACK)
-			self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
+			self.screen.blit(timelabel,(x+k*width/5-5,y+height-self.fontsize))
 			k+=1
 		# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
 		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
