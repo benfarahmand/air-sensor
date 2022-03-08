@@ -92,7 +92,7 @@ class gui:
 		smallGraphHeight = self.screenHeight/len(sensorArray)
 		i = 0
 		for sensor in sensorArray:
-			self.smallgraph(self.screenWidth*0.5 , 
+			self.smallgraph(self.screenWidth*0.5-20, 
 				i*smallGraphHeight+5, 
 				smallGraphWidth , 
 				smallGraphHeight , 
