@@ -199,7 +199,7 @@ class AirSensor:
 						# 	self.mq8ppm.isCalibrationDone == True and 
 						# 	self.mq9ppm.isCalibrationDone == True and 
 						# 	self.mq135ppm.isCalibrationDone == True):
-						self.storeDataInArray(data)
+						self.manageData(data)
 							# l = 4
 							# if (len(self.timeStamp) > l and 
 							# 	len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
