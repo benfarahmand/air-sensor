@@ -10,6 +10,7 @@ from MQ8PPM import MQ8PPM
 from MQ9PPM import MQ9PPM
 from MQ135PPM import MQ135PPM
 from gui import gui
+import ast
 
 class AirSensor:
 
@@ -19,7 +20,7 @@ class AirSensor:
 		self.sensorArray = [MQ2PPM(),MQ3PPM(),MQ4PPM(),
 						MQ5PPM(),MQ6PPM(),MQ7PPM(),
 						MQ8PPM(),MQ9PPM(),MQ135PPM()]
-		self.gui = gui()
+		# self.gui = gui()
 		self.maxGraphTime = 90 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
@@ -31,7 +32,8 @@ class AirSensor:
 
 	def parseData(self, raw):
 		# to do
-		result = raw[raw.find("Q")+1 : raw.find(" -")]
+		result = ast.literal_eval(raw)
+		# result = raw[raw.find("Q")+1 : raw.find(" -")]
 		return result
 
 	def manageData(self, data):
@@ -43,16 +45,17 @@ class AirSensor:
 					del sensor.data[0]
 
 		try :
-			index = int(data[0 : data.find(":")])
-			value = int(data[data.find(":")+2 : len(data)])
-			for sensor in self.sensorArray:
-				if index == sensor.sensorNumber:
-					if sensor.isCalibrationDone == False:
-						sensor.MQCalibration(value)
-					else:
-						sensor.data.append(sensor.getMQPPM(value))
-					if sensor.sensorNumber==2:
-						self.timeStamp.append(time.time()-self.seconds)
+			print(data)
+			# index = int(data[0 : data.find(":")])
+			# value = int(data[data.find(":")+2 : len(data)])
+			# for sensor in self.sensorArray:
+			# 	if index == sensor.sensorNumber:
+			# 		if sensor.isCalibrationDone == False:
+			# 			sensor.MQCalibration(value)
+			# 		else:
+			# 			sensor.data.append(sensor.getMQPPM(value))
+			# 		if sensor.sensorNumber==2:
+			# 			self.timeStamp.append(time.time()-self.seconds)
 		except:
 			print("Issue reading arduino serial data.")
 		
@@ -72,11 +75,11 @@ class AirSensor:
 					data = self.parseData(raw)
 					if data is not None and len(data)>0 and len(data)<10:
 						self.manageData(data)
-						quit = self.gui.draw(
-							self.timeStamp, 
-							self.sensorArray,
-							self.maxGraphTime)
-						self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
+						# quit = self.gui.draw(
+						# 	self.timeStamp, 
+						# 	self.sensorArray,
+						# 	self.maxGraphTime)
+						# self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
 		# except:
 		# 	print("Exiting")
 
