@@ -44,17 +44,17 @@ class MQ2PPM():
         val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
         return val
 
-     def MQCalibration(self, mq_pin):
-        val = 0.0
-        for i in range(self.CALIBARAION_SAMPLE_TIMES):
-            val += self.MQResistanceCalculation(self.mcp.read_adc(mq_pin))
-            time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+    # def MQCalibration(self, mq_pin):
+    #     val = 0.0
+    #     for i in range(self.CALIBARAION_SAMPLE_TIMES):
+    #         val += self.MQResistanceCalculation(self.mcp.read_adc(mq_pin))
+    #         time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
 
-        val = val / self.CALIBARAION_SAMPLE_TIMES
+    #     val = val / self.CALIBARAION_SAMPLE_TIMES
 
-        val = val / self.RO_CLEAN_AIR_FACTOR
+    #     val = val / self.RO_CLEAN_AIR_FACTOR
 
-        return val;
+    #     return val;
         
     ######################### MQResistanceCalculation #########################
     # Input:   raw_adc - raw value read from arduino, which represents the voltage
