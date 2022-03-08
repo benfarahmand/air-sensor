@@ -77,11 +77,11 @@ class AirSensor:
 					data = self.parseData(raw)
 					if data is not None and len(data)>0 and len(data)<10:
 						self.manageData(data)
-						# quit = self.gui.draw(
-						# 	self.timeStamp, 
-						# 	self.sensorArray,
-						# 	self.maxGraphTime)
-						# self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
+						quit = self.gui.draw(
+							self.timeStamp, 
+							self.sensorArray,
+							self.maxGraphTime)
+						self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
 		# except:
 		# 	print("Exiting")
 
