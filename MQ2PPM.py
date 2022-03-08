@@ -30,9 +30,9 @@ class MQ2PPM(MQFunctions):
         #             "Smoke":[2.3,0.54,-0.45]}
 
         #v2
-        self.gases = {"LPG":[2.3,0.23,-0.48],
-                    "CH4":[2.3,0.71,-0.31],
-                    "ALCOHOL":[2.3,0.54,-0.45]}
+        self.gases = {"LPG":[2.48,-0.66,-0.7],
+                    "CH4": [2.48,-0.51,-0.64],
+                    "ALCOHOL":[2.48,-0.36,-0.56]}
         super(MQ2PPM, self).__init__(self.gases)
         # v1
         # self.PropaneCurve = [2.3,0.23,-0.48]    
