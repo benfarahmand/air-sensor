@@ -26,7 +26,7 @@ class MQ8PPM():
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
-        val["GAS_HYDROGEN"] = self.MQCalcPPM(read/self.Ro, self.H2Curve)
+        val["H2"] = self.MQCalcPPM(read/self.Ro, self.H2Curve)
         return val
         
     ######################### MQResistanceCalculation #########################

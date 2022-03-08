@@ -34,7 +34,7 @@ class AirSensor:
 		self.mq8ppm = MQ8PPM()
 		self.mq9ppm = MQ9PPM()
 		self.mq135ppm = MQ135PPM()
-		self.gui = gui()
+		# self.gui = gui()
 		self.maxGraphTime = 90 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
@@ -108,14 +108,33 @@ class AirSensor:
 		# except:
 		# 	print("An exception occurred")
 
-	# def sensorCalibration():
-		
+	def calibrateSensors(self, data):
+		index = int(data[0 : data.find(":")])
+		value = int(data[data.find(":")+2 : len(data)])
+		if index == 2 and self.mq2ppm.isCalibrationDone == False:
+			self.mq2ppm.MQCalibration(value)
+		if index == 3 and self.mq3ppm.isCalibrationDone == False:
+			self.mq3ppm.MQCalibration(value)
+		if index == 4 and self.mq4ppm.isCalibrationDone == False:
+			self.mq4ppm.MQCalibration(value)
+		if index == 5 and self.mq5ppm.isCalibrationDone == False:
+			self.mq5ppm.MQCalibration(value)
+		if index == 6 and self.mq6ppm.isCalibrationDone == False:
+			self.mq6ppm.MQCalibration(value)
+		if index == 7 and self.mq7ppm.isCalibrationDone == False:
+			self.mq7ppm.MQCalibration(value)
+		if index == 8 and self.mq8ppm.isCalibrationDone == False:
+			self.mq8ppm.MQCalibration(value)
+		if index == 9 and self.mq9ppm.isCalibrationDone == False:
+			self.mq9ppm.MQCalibration(value)
+		if index == 135 and self.mq135ppm.isCalibrationDone == False:
+			self.mq135ppm.MQCalibration(value)
 
 		
 	def __call__(self):
 		
 		self.ser.reset_input_buffer()
-		time.sleep(2)
+		time.sleep(1)
 		quit = False
 		self.seconds = time.time() #when we started the program
 
@@ -127,28 +146,39 @@ class AirSensor:
 					# print(raw)
 					data = self.parseData(raw)
 					if data is not None and len(data)>0 and len(data)<10:
-						self.storeDataInArray(data)
-						l = 4
-						if (len(self.timeStamp) > l and 
-							len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
-							len(self.mq5) > l and len(self.mq6) > l and len(self.mq7) > l and
-							len(self.mq8) > l and len(self.mq9) > l and len(self.mq135) > l):
-							quit = self.gui.draw(
-								self.timeStamp, 
-								[self.mq2,self.mq3,self.mq4,
-								self.mq5,self.mq6,self.mq7,
-								self.mq8,self.mq9,self.mq135],
-								self.maxGraphTime,
-								[self.mq2ppm.MAX_PPM,self.mq3ppm.MAX_PPM,self.mq4ppm.MAX_PPM,
-								self.mq5ppm.MAX_PPM,self.mq6ppm.MAX_PPM,self.mq7ppm.MAX_PPM,
-								self.mq8ppm.MAX_PPM,self.mq9ppm.MAX_PPM,self.mq135ppm.MAX_PPM],
-								[self.mq2ppm.MIN_PPM,self.mq3ppm.MIN_PPM,self.mq4ppm.MIN_PPM,
-								self.mq5ppm.MIN_PPM,self.mq6ppm.MIN_PPM,self.mq7ppm.MIN_PPM,
-								self.mq8ppm.MIN_PPM,self.mq9ppm.MIN_PPM,self.mq135ppm.MIN_PPM],
-								[self.mq2ppm.LABEL,self.mq3ppm.LABEL,self.mq4ppm.LABEL,
-								self.mq5ppm.LABEL,self.mq6ppm.LABEL,self.mq7ppm.LABEL,
-								self.mq8ppm.LABEL,self.mq9ppm.LABEL,self.mq135ppm.LABEL])
-							self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
+						if (self.mq2ppm.isCalibrationDone == True and 
+							self.mq3ppm.isCalibrationDone == True and 
+							self.mq4ppm.isCalibrationDone == True and 
+							self.mq5ppm.isCalibrationDone == True and 
+							self.mq6ppm.isCalibrationDone == True and 
+							self.mq7ppm.isCalibrationDone == True and 
+							self.mq8ppm.isCalibrationDone == True and 
+							self.mq9ppm.isCalibrationDone == True and 
+							self.mq135ppm.isCalibrationDone == True):
+							self.storeDataInArray(data)
+							# l = 4
+							# if (len(self.timeStamp) > l and 
+							# 	len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
+							# 	len(self.mq5) > l and len(self.mq6) > l and len(self.mq7) > l and
+							# 	len(self.mq8) > l and len(self.mq9) > l and len(self.mq135) > l):
+							# 	quit = self.gui.draw(
+							# 		self.timeStamp, 
+							# 		[self.mq2,self.mq3,self.mq4,
+							# 		self.mq5,self.mq6,self.mq7,
+							# 		self.mq8,self.mq9,self.mq135],
+							# 		self.maxGraphTime,
+							# 		[self.mq2ppm.MAX_PPM,self.mq3ppm.MAX_PPM,self.mq4ppm.MAX_PPM,
+							# 		self.mq5ppm.MAX_PPM,self.mq6ppm.MAX_PPM,self.mq7ppm.MAX_PPM,
+							# 		self.mq8ppm.MAX_PPM,self.mq9ppm.MAX_PPM,self.mq135ppm.MAX_PPM],
+							# 		[self.mq2ppm.MIN_PPM,self.mq3ppm.MIN_PPM,self.mq4ppm.MIN_PPM,
+							# 		self.mq5ppm.MIN_PPM,self.mq6ppm.MIN_PPM,self.mq7ppm.MIN_PPM,
+							# 		self.mq8ppm.MIN_PPM,self.mq9ppm.MIN_PPM,self.mq135ppm.MIN_PPM],
+							# 		[self.mq2ppm.LABEL,self.mq3ppm.LABEL,self.mq4ppm.LABEL,
+							# 		self.mq5ppm.LABEL,self.mq6ppm.LABEL,self.mq7ppm.LABEL,
+							# 		self.mq8ppm.LABEL,self.mq9ppm.LABEL,self.mq135ppm.LABEL])
+							# 	self.secondsPassed = (self.timeStamp[len(self.timeStamp)-1] - self.timeStamp[0])
+						else:
+							self.calibrateSensors(data)
 		# except:
 		# 	print("Exiting")
 

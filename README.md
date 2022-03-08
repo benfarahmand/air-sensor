@@ -10,14 +10,15 @@ Hardware:
 - PSU: 5V 10AMP
 
 To Do:
-- better understand how calibration works to set the Ro value
+- IN PROGRESS: create gui that visualizes the data
+- IN PROGRESS: better understand how calibration works to set the Ro value
 - implement equation to scale Rs/Ro based on temperature and humidity
 - need to connect the temperature and humidity sensor
 - get a carbon dioxide sensor
 - get a Particulate Matter sensor
-- create gui that visualizes the data
 - connect 800x480 5-inch touch display
 
 
 Credits:
-- To understand how to convert voltage values to PPM, I borrowed from https://github.com/tutRPi/Raspberry-Pi-Gas-Sensor-MQ <- running into issues following this tutorial. Trying this one instead: https://github.com/shubham0490/MQ-sensor-ppm-conversion
+- To understand how to convert voltage values to PPM, I borrowed from https://sandboxelectronics.com/?p=165
+- Also looked at this code: https://github.com/shubham0490/MQ-sensor-ppm-conversion

@@ -3,8 +3,8 @@ import math
 
 class MQ2PPM():
 
-    CALIBARAION_SAMPLE_TIMES = 50
-    CALIBRATION_SAMPLE_INTERVAL = 500
+    CALIBRATION_SAMPLE_TIMES = 50
+    # CALIBRATION_SAMPLE_INTERVAL = 500
 
     # v1
     RL_VALUE = 5
@@ -21,6 +21,9 @@ class MQ2PPM():
 
     def __init__(self):
         self.Ro = self.RO_CLEAN_AIR_FACTOR
+        self.calibrationValue = 0.0
+        self.calibrationSampleCount = 0
+        self.isCalibrationDone = False
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
@@ -44,17 +47,28 @@ class MQ2PPM():
         val["Smoke"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
         return val
 
-    # def MQCalibration(self, mq_pin):
-    #     val = 0.0
-    #     for i in range(self.CALIBARAION_SAMPLE_TIMES):
-    #         val += self.MQResistanceCalculation(self.mcp.read_adc(mq_pin))
-    #         time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+        print("Calibrating...")
+        self.Ro = self.MQCalibration()
+        
 
-    #     val = val / self.CALIBARAION_SAMPLE_TIMES
+    def MQCalibration(self, raw):
+        # val = 0.0
+        # for i in range(self.CALIBARAION_SAMPLE_TIMES):
+        self.calibrationValue += self.MQResistanceCalculation(raw)
+        self.calibrationSampleCount +=1
+        print(LABEL + ": "+self.calibrationSampleCount)
+            # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+        if self.calibrationSampleCount == self.CALIBARAION_SAMPLE_TIMES:
+            self.calibrationValue = self.calibrationValue / self.CALIBARAION_SAMPLE_TIMES
 
-    #     val = val / self.RO_CLEAN_AIR_FACTOR
+            self.calibrationValue = self.calibrationValue / self.RO_CLEAN_AIR_FACTOR
 
-    #     return val;
+            self.Ro = self.calibrationValue
+
+            print("Calibration is done...")
+            print(LABEL + " Ro= "+str(self.Ro)+" kohm")
+
+            self.isCalibrationDone=True
         
     ######################### MQResistanceCalculation #########################
     # Input:   raw_adc - raw value read from arduino, which represents the voltage
@@ -63,8 +77,8 @@ class MQ2PPM():
     #          across the load resistor and its resistance, the resistance of the sensor
     #          could be derived.
     ############################################################################ 
-    def MQResistanceCalculation(self, raw_adc):
-        return float(self.RL_VALUE*(1023.0-raw_adc)/float(raw_adc));
+    def MQResistanceCalculation(self, raw):
+        return float(self.RL_VALUE*(1023.0-raw)/float(raw));
      
     #########################  MQGetPercentage #################################
     # Input:   rs_ro_ratio - Rs divided by Ro
