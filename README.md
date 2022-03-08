@@ -11,7 +11,7 @@ Hardware:
 
 To Do:
 - IN PROGRESS: create gui that visualizes the data
-- IN PROGRESS: better understand how calibration works to set the Ro value
+- DONE: better understand how calibration works to set the Ro value. implement calibration
 - implement equation to scale Rs/Ro based on temperature and humidity
 - need to connect the temperature and humidity sensor
 - get a carbon dioxide sensor
