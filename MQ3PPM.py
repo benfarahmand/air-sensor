@@ -28,9 +28,3 @@ class MQ3PPM(MQFunctions):
         super(MQ3PPM, self).__init__(self.gases)
         # self.AlcoholCurve = [-1.0,0.36,-0.64] #v1
         # self.AlcoholCurve = [1.7,-0.74,-0.91] #v2
-    
-    # def getMQPPM(self, raw):
-    #     val = {}
-    #     read = self.MQResistanceCalculation(raw)
-    #     val["ALCOHOL"]  = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
-    #     return val

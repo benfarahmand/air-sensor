@@ -19,9 +19,6 @@ class MQFunctions(object):
         read = self.MQResistanceCalculation(raw)
         for gasName, pCurve in self.gases:
             val[key] = self.MQCalcPPM(read/self.Ro, pCurve)
-        # val["NH3"] = self.MQCalcPPM(read/self.Ro, self.AmmoniaCurve)
-        # val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
-        # val["C6H6"] = self.MQCalcPPM(read/self.Ro, self.BenzeneCurve)
         return val
 
     def MQCalibration(self, raw):

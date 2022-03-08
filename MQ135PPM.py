@@ -25,10 +25,3 @@ class MQ135PPM(MQFunctions):
         # self.AlcoholCurve = [1.0,0.29,-0.33]
         # self.BenzeneCurve = [1.0,0.20,-0.31]
     
-    # def getMQPPM(self, raw):
-    #     val = {}
-    #     read = self.MQResistanceCalculation(raw)
-    #     val["NH3"] = self.MQCalcPPM(read/self.Ro, self.AmmoniaCurve)
-    #     val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
-    #     val["C6H6"] = self.MQCalcPPM(read/self.Ro, self.BenzeneCurve)
-    #     return val
