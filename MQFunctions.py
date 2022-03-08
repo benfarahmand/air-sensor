@@ -24,7 +24,7 @@ class MQFunctions(object):
     def MQCalibration(self, raw):
         self.calibrationValue += self.MQResistanceCalculation(raw)
         self.calibrationSampleCount +=1
-        print(self.LABEL + ": "+str(self.calibrationSampleCount))
+        # print(self.LABEL + ": "+str(self.calibrationSampleCount))
         if self.calibrationSampleCount == self.CALIBRATION_SAMPLE_TIMES:
             self.calibrationValue = self.calibrationValue / self.CALIBRATION_SAMPLE_TIMES
 
@@ -32,7 +32,6 @@ class MQFunctions(object):
 
             self.Ro = self.calibrationValue
 
-            print("Calibration is done...")
             print(self.LABEL + " Ro= "+str(self.Ro)+" kohm")
 
             self.isCalibrationDone=True
