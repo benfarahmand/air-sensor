@@ -18,7 +18,7 @@ class MQ2PPM(MQFunctions):
     LABEL = "MQ2"
 
     def __init__(self):
-        super(MQ135PPM, self).__init__()
+        super(MQ2PPM, self).__init__()
         self.sensorNumber = 2
         
         # following values are derived from the logarithmic graphs 
