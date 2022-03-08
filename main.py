@@ -20,7 +20,7 @@ class AirSensor:
 		self.sensorArray = [MQ2PPM(),MQ3PPM(),MQ4PPM(),
 						MQ5PPM(),MQ6PPM(),MQ7PPM(),
 						MQ8PPM(),MQ9PPM(),MQ135PPM()]
-		# self.gui = gui()
+		self.gui = gui()
 		self.maxGraphTime = 90 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
