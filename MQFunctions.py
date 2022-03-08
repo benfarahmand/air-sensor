@@ -3,6 +3,11 @@ import math
 
 class MQFunctions(object):
 
+	CALIBRATION_SAMPLE_TIMES = 50
+
+	def __init__(self):
+			#nothing
+
 	def MQCalibration(self, raw):
         self.calibrationValue += self.MQResistanceCalculation(raw)
         self.calibrationSampleCount +=1
