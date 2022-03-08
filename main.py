@@ -50,8 +50,6 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		# try:
-			# print(str(self.secondsPassed))
 		if self.secondsPassed > self.maxGraphTime: #remove the first index
 			del self.timeStamp[0] 
 			lengthOfTime = len(self.timeStamp)
@@ -74,8 +72,11 @@ class AirSensor:
 			if len(self.mq135) >= lengthOfTime:
 				del self.mq135[0]
 
-		index = int(data[0 : data.find(":")])
-		value = int(data[data.find(":")+2 : len(data)])
+		try :
+			index = int(data[0 : data.find(":")])
+			value = int(data[data.find(":")+2 : len(data)])
+		except:
+			print("Issue reading arduino serial data.")
 		if index == 2:
 			self.timeStamp.append(time.time()-self.seconds)
 			self.mq2.append(self.mq2ppm.getMQPPM(value))
@@ -105,12 +106,13 @@ class AirSensor:
 		if index == 135:
 			# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
 			self.mq135.append(self.mq135ppm.getMQPPM(value))
-		# except:
-		# 	print("An exception occurred")
 
 	def calibrateSensors(self, data):
-		index = int(data[0 : data.find(":")])
-		value = int(data[data.find(":")+2 : len(data)])
+		try :
+			index = int(data[0 : data.find(":")])
+			value = int(data[data.find(":")+2 : len(data)])
+		except:
+			print("Issue reading arduino serial data.")
 		if index == 2 and self.mq2ppm.isCalibrationDone == False:
 			self.mq2ppm.MQCalibration(value)
 		if index == 3 and self.mq3ppm.isCalibrationDone == False:
