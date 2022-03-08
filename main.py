@@ -199,7 +199,7 @@ class AirSensor:
 						# 	self.mq8ppm.isCalibrationDone == True and 
 						# 	self.mq9ppm.isCalibrationDone == True and 
 						# 	self.mq135ppm.isCalibrationDone == True):
-						# 	self.storeDataInArray(data)
+						self.storeDataInArray(data)
 							# l = 4
 							# if (len(self.timeStamp) > l and 
 							# 	len(self.mq2) > l and len(self.mq3) > l and len(self.mq4) > l and
@@ -207,7 +207,7 @@ class AirSensor:
 							# 	len(self.mq8) > l and len(self.mq9) > l and len(self.mq135) > l):
 						quit = self.gui.draw(
 							self.timeStamp, 
-							self.sensors,
+							self.sensorArray,
 							self.maxGraphTime)
 								# [self.mq2,self.mq3,self.mq4,
 								# self.mq5,self.mq6,self.mq7,
