@@ -46,17 +46,18 @@ class AirSensor:
 					del sensor.data[0]
 
 		try :
-			print(data)
+			for name, value in data.items():
+
 			# index = int(data[0 : data.find(":")])
 			# value = int(data[data.find(":")+2 : len(data)])
-			# for sensor in self.sensorArray:
-			# 	if index == sensor.sensorNumber:
-			# 		if sensor.isCalibrationDone == False:
-			# 			sensor.MQCalibration(value)
-			# 		else:
-			# 			sensor.data.append(sensor.getMQPPM(value))
-			# 		if sensor.sensorNumber==2:
-			# 			self.timeStamp.append(time.time()-self.seconds)
+				for sensor in self.sensorArray:
+					if name == sensor.LABEL:
+						if sensor.isCalibrationDone == False:
+							sensor.MQCalibration(value)
+						else:
+							sensor.data.append(sensor.getMQPPM(value))
+						if name=='MQ2':
+							self.timeStamp.append(time.time()-self.seconds)
 		except:
 			print("Issue reading arduino serial data.")
 		
