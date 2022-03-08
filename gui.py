@@ -46,10 +46,10 @@ class gui:
 		return rightMin + (valueScaled * rightSpan)
 
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
-		#draw x-axis:
-		pg.draw.line(self.screen, self.BLACK, (x,y),(x,y+height-self.fontsize),1)
 		#draw y-axis:
-		pg.draw.line(self.screen, self.BLACK, (x,y+height-self.fontsize),(x+width,y+height-self.fontsize),1)
+		pg.draw.line(self.screen, self.BLACK, (x,y),(x,y+height-self.fontsize*2),1)
+		#draw x-axis:
+		pg.draw.line(self.screen, self.BLACK, (x,y+height),(x+width,y+height),1)
 
 		k = 0
 		while k < 5:
@@ -58,7 +58,7 @@ class gui:
 			k+=1
 		# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
 		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
-		self.screen.blit(sLabel,(2,y))
+		self.screen.blit(sLabel,(x-50,y))
 		# print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
 		while (i < len(data) - 1 and i < len(time) - 1):
