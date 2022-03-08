@@ -89,7 +89,7 @@ class gui:
 	def draw(self, time, sensorArray, maxX):
 		self.screen.fill(self.WHITE)
 		smallGraphWidth = self.screenWidth*0.5
-		smallGraphHeight = self.screenHeight/len(data)
+		smallGraphHeight = self.screenHeight/len(sensorArray)
 		i = 0
 		for sensor in sensorArray:
 			self.smallgraph(self.screenWidth*0.5 , 
