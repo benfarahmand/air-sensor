@@ -17,6 +17,7 @@ class MQ5PPM():
         self.calibrationValue = 0.0
         self.calibrationSampleCount = 0
         self.isCalibrationDone = False
+        self.data = []
         self.sensorNumber = 5
         
         # following values are derived from the logarithmic graphs 
