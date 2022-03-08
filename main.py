@@ -31,9 +31,8 @@ class AirSensor:
 			return str(self.ser.readline().decode('utf-8').rstrip())
 
 	def parseData(self, raw):
-		if raw[0] == '{':
+		if raw[0] == '{': #make sure we're starting from the start of the dictionary
 			result = ast.literal_eval(raw)
-			# result = raw[raw.find("Q")+1 : raw.find(" -")]
 			return result
 		return None
 
@@ -47,9 +46,6 @@ class AirSensor:
 
 		try :
 			for name, value in data.items():
-
-			# index = int(data[0 : data.find(":")])
-			# value = int(data[data.find(":")+2 : len(data)])
 				for sensor in self.sensorArray:
 					if name == sensor.LABEL:
 						if sensor.isCalibrationDone == False:
