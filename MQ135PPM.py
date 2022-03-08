@@ -4,7 +4,7 @@ from MQFunctions import MQFunctions
 
 class MQ135PPM(MQFunctions):
 
-    CALIBRATION_SAMPLE_TIMES = 50
+    # CALIBRATION_SAMPLE_TIMES = 50
 
     RL_VALUE                     = 20        # define the load resistance on the board, in kilo ohms
     RO_CLEAN_AIR_FACTOR          = 3.6       # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
@@ -14,11 +14,11 @@ class MQ135PPM(MQFunctions):
     LABEL = "MQ135"
 
     def __init__(self):
-        self.Ro = self.RO_CLEAN_AIR_FACTOR
-        self.calibrationValue = 0.0
-        self.calibrationSampleCount = 0
-        self.isCalibrationDone = False
-        self.data = []
+        # self.Ro = self.RO_CLEAN_AIR_FACTOR
+        # self.calibrationValue = 0.0
+        # self.calibrationSampleCount = 0
+        # self.isCalibrationDone = False
+        # self.data = []
         self.sensorNumber = 135
         
         # following values are derived from the logarithmic graphs 

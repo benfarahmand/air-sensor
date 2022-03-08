@@ -6,6 +6,11 @@ class MQFunctions(object):
     CALIBRATION_SAMPLE_TIMES = 50
 
     def __init__(self):
+        self.Ro = self.RO_CLEAN_AIR_FACTOR
+        self.calibrationValue = 0.0
+        self.calibrationSampleCount = 0
+        self.isCalibrationDone = False
+        self.data = []
     	#nothing
 
     def MQCalibration(self, raw):
