@@ -32,6 +32,25 @@ class MQ135PPM():
         val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
         val["C6H6"] = self.MQCalcPPM(read/self.Ro, self.BenzeneCurve)
         return val
+
+    def MQCalibration(self, raw):
+        # val = 0.0
+        # for i in range(self.CALIBARAION_SAMPLE_TIMES):
+        self.calibrationValue += self.MQResistanceCalculation(raw)
+        self.calibrationSampleCount +=1
+        print(self.LABEL + ": "+self.calibrationSampleCount)
+            # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+        if self.calibrationSampleCount == self.CALIBARAION_SAMPLE_TIMES:
+            self.calibrationValue = self.calibrationValue / self.CALIBARAION_SAMPLE_TIMES
+
+            self.calibrationValue = self.calibrationValue / self.RO_CLEAN_AIR_FACTOR
+
+            self.Ro = self.calibrationValue
+
+            print("Calibration is done...")
+            print(self.LABEL + " Ro= "+str(self.Ro)+" kohm")
+
+            self.isCalibrationDone=True
         
     ######################### MQResistanceCalculation #########################
     # Input:   raw_adc - raw value read from arduino, which represents the voltage

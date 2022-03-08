@@ -38,7 +38,7 @@ class MQ9PPM():
         # for i in range(self.CALIBARAION_SAMPLE_TIMES):
         self.calibrationValue += self.MQResistanceCalculation(raw)
         self.calibrationSampleCount +=1
-        print(LABEL + ": "+self.calibrationSampleCount)
+        print(self.LABEL + ": "+self.calibrationSampleCount)
             # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
         if self.calibrationSampleCount == self.CALIBARAION_SAMPLE_TIMES:
             self.calibrationValue = self.calibrationValue / self.CALIBARAION_SAMPLE_TIMES
@@ -48,7 +48,7 @@ class MQ9PPM():
             self.Ro = self.calibrationValue
 
             print("Calibration is done...")
-            print(LABEL + " Ro= "+str(self.Ro)+" kohm")
+            print(self.LABEL + " Ro= "+str(self.Ro)+" kohm")
 
             self.isCalibrationDone=True
         
