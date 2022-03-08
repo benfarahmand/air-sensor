@@ -55,8 +55,8 @@ class MQ2PPM():
         self.calibrationSampleCount +=1
         print(self.LABEL + ": "+str(self.calibrationSampleCount))
             # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
-        if self.calibrationSampleCount == self.CALIBARAION_SAMPLE_TIMES:
-            self.calibrationValue = self.calibrationValue / self.CALIBARAION_SAMPLE_TIMES
+        if self.calibrationSampleCount == self.CALIBRATION_SAMPLE_TIMES:
+            self.calibrationValue = self.calibrationValue / self.CALIBRATION_SAMPLE_TIMES
 
             self.calibrationValue = self.calibrationValue / self.RO_CLEAN_AIR_FACTOR
 
