@@ -31,10 +31,11 @@ class AirSensor:
 			return str(self.ser.readline().decode('utf-8').rstrip())
 
 	def parseData(self, raw):
-		# to do
-		result = ast.literal_eval(raw)
-		# result = raw[raw.find("Q")+1 : raw.find(" -")]
-		return result
+		if raw[0] == '{':
+			result = ast.literal_eval(raw)
+			# result = raw[raw.find("Q")+1 : raw.find(" -")]
+			return result
+		return None
 
 	def manageData(self, data):
 		if self.secondsPassed > self.maxGraphTime: #remove the first index
