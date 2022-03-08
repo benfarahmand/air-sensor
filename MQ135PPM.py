@@ -3,6 +3,8 @@ import math
 
 class MQ135PPM():
 
+    CALIBRATION_SAMPLE_TIMES = 50
+
     RL_VALUE                     = 20        # define the load resistance on the board, in kilo ohms
     RO_CLEAN_AIR_FACTOR          = 3.6       # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                              # which is derived from the chart in datasheet
@@ -12,6 +14,9 @@ class MQ135PPM():
 
     def __init__(self):
         self.Ro = self.RO_CLEAN_AIR_FACTOR
+        self.calibrationValue = 0.0
+        self.calibrationSampleCount = 0
+        self.isCalibrationDone = False
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out

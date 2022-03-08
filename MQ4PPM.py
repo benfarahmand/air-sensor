@@ -3,6 +3,8 @@ import math
 
 class MQ4PPM():
 
+    CALIBRATION_SAMPLE_TIMES = 50
+
     RL_VALUE                     = 20      # define the load resistance on the board, in kilo ohms
     RO_CLEAN_AIR_FACTOR          = 4.5     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet
@@ -12,6 +14,9 @@ class MQ4PPM():
 
     def __init__(self):
         self.Ro = self.RO_CLEAN_AIR_FACTOR
+        self.calibrationValue = 0.0
+        self.calibrationSampleCount = 0
+        self.isCalibrationDone = False
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
@@ -26,6 +31,25 @@ class MQ4PPM():
         val["LPG"]  = self.MQCalcPPM(read/self.Ro, self.LPGCurve)
         val["CH4"]  = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
         return val
+
+    def MQCalibration(self, raw):
+        # val = 0.0
+        # for i in range(self.CALIBARAION_SAMPLE_TIMES):
+        self.calibrationValue += self.MQResistanceCalculation(raw)
+        self.calibrationSampleCount +=1
+        print(LABEL + ": "+self.calibrationSampleCount)
+            # time.sleep(self.CALIBRATION_SAMPLE_INTERVAL / 1000.0)
+        if self.calibrationSampleCount == self.CALIBARAION_SAMPLE_TIMES:
+            self.calibrationValue = self.calibrationValue / self.CALIBARAION_SAMPLE_TIMES
+
+            self.calibrationValue = self.calibrationValue / self.RO_CLEAN_AIR_FACTOR
+
+            self.Ro = self.calibrationValue
+
+            print("Calibration is done...")
+            print(LABEL + " Ro= "+str(self.Ro)+" kohm")
+
+            self.isCalibrationDone=True
         
     ######################### MQResistanceCalculation #########################
     # Input:   raw_adc - raw value read from arduino, which represents the voltage

@@ -46,10 +46,7 @@ class MQ2PPM():
         val["CO"] = self.MQCalcPPM(read/self.Ro, self.COCurve)
         val["Smoke"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
         return val
-
-        print("Calibrating...")
-        self.Ro = self.MQCalibration()
-        
+   
 
     def MQCalibration(self, raw):
         # val = 0.0
