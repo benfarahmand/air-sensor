@@ -26,8 +26,10 @@ class MQ2PPM():
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
         # then in another equation below we will use these values to determine the ppm
         
-        V1
+        # v1
         self.PropaneCurve = [2.3,0.23,-0.48]    
+        self.COCurve = [2.3,0.71,-0.31]    
+        self.SmokeCurve = [2.3,0.54,-0.45]    
 
         #v2
         # self.PropaneCurve = [2.48,-0.66,-0.7]    
@@ -38,8 +40,8 @@ class MQ2PPM():
         val = {}
         read = self.MQResistanceCalculation(raw)
         val["PROPANE"] = self.MQCalcPPM(read/self.Ro, self.PropaneCurve)
-        # val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.MethaneCurve)
-        # val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
+        val["METHANE"] = self.MQCalcPPM(read/self.Ro, self.COCurve)
+        val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
         return val
 
      def MQCalibration(self, mq_pin):

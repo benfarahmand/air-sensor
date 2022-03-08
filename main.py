@@ -50,54 +50,63 @@ class AirSensor:
 		return result
 
 	def storeDataInArray(self, data):
-		try:
+		# try:
 			# print(str(self.secondsPassed))
-			if self.secondsPassed > self.maxGraphTime: #remove the first index
-				# print("removed index")
-				del self.timeStamp[0] #will need to improve this logic, because it's removing too many indexes
+		if self.secondsPassed > self.maxGraphTime: #remove the first index
+			del self.timeStamp[0] 
+			lengthOfTime = len(self.timeStamp)
+			if len(self.mq2) >= lengthOfTime:
 				del self.mq2[0]
+			if len(self.mq3) >= lengthOfTime:
 				del self.mq3[0]
+			if len(self.mq4) >= lengthOfTime:
 				del self.mq4[0]
+			if len(self.mq5) >= lengthOfTime:
 				del self.mq5[0]
+			if len(self.mq6) >= lengthOfTime:
 				del self.mq6[0]
+			if len(self.mq7) >= lengthOfTime:
 				del self.mq7[0]
+			if len(self.mq8) >= lengthOfTime:
 				del self.mq8[0]
+			if len(self.mq9) >= lengthOfTime:
 				del self.mq9[0]
+			if len(self.mq135) >= lengthOfTime:
 				del self.mq135[0]
 
-			index = int(data[0 : data.find(":")])
-			value = int(data[data.find(":")+2 : len(data)])
-			if index == 2:
-				self.timeStamp.append(time.time()-self.seconds)
-				self.mq2.append(self.mq2ppm.getMQPPM(value))
-				# print(str(value)+" : "+str(self.mq2[len(self.mq2)-1]))
-			if index == 3:
-				# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
-				self.mq3.append(self.mq3ppm.getMQPPM(value))
-				print(str(value)+" : "+str(self.mq3[len(self.mq3)-1]))
-			if index == 4:
-				# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
-				self.mq4.append(self.mq4ppm.getMQPPM(value))
-			if index == 5:
-				# print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
-				self.mq5.append(self.mq5ppm.getMQPPM(value))
-			if index == 6:
-				# print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
-				self.mq6.append(self.mq6ppm.getMQPPM(value))
-			if index == 7:
-				# print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
-				self.mq7.append(self.mq7ppm.getMQPPM(value))
-			if index == 8:
-				# print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
-				self.mq8.append(self.mq8ppm.getMQPPM(value))
-			if index == 9:
-				# print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
-				self.mq9.append(self.mq9ppm.getMQPPM(value))
-			if index == 135:
-				# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
-				self.mq135.append(self.mq135ppm.getMQPPM(value))
-		except:
-			print("An exception occurred")
+		index = int(data[0 : data.find(":")])
+		value = int(data[data.find(":")+2 : len(data)])
+		if index == 2:
+			self.timeStamp.append(time.time()-self.seconds)
+			self.mq2.append(self.mq2ppm.getMQPPM(value))
+			# print(str(value)+" : "+str(self.mq2[len(self.mq2)-1]))
+		if index == 3:
+			# print("MQ3:"+str(self.mq3ppm.getMQPPM(value)))
+			self.mq3.append(self.mq3ppm.getMQPPM(value))
+			print(str(value)+" : "+str(self.mq3[len(self.mq3)-1]))
+		if index == 4:
+			# print("MQ4:"+str(self.mq4ppm.getMQPPM(value)))
+			self.mq4.append(self.mq4ppm.getMQPPM(value))
+		if index == 5:
+			# print("MQ5:"+str(self.mq5ppm.getMQPPM(value)))
+			self.mq5.append(self.mq5ppm.getMQPPM(value))
+		if index == 6:
+			# print("MQ6:"+str(self.mq6ppm.getMQPPM(value)))
+			self.mq6.append(self.mq6ppm.getMQPPM(value))
+		if index == 7:
+			# print("MQ7:"+str(self.mq7ppm.getMQPPM(value)))
+			self.mq7.append(self.mq7ppm.getMQPPM(value))
+		if index == 8:
+			# print("MQ8:"+str(self.mq8ppm.getMQPPM(value)))
+			self.mq8.append(self.mq8ppm.getMQPPM(value))
+		if index == 9:
+			# print("MQ9:"+str(self.mq9ppm.getMQPPM(value)))
+			self.mq9.append(self.mq9ppm.getMQPPM(value))
+		if index == 135:
+			# print("MQ135:"+str(self.mq135ppm.getMQPPM(value)))
+			self.mq135.append(self.mq135ppm.getMQPPM(value))
+		# except:
+		# 	print("An exception occurred")
 
 	# def sensorCalibration():
 		

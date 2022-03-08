@@ -46,12 +46,25 @@ class gui:
 		return rightMin + (valueScaled * rightSpan)
 
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
+		#draw x-axis:
+		pg.draw.line(self.screen, self.BLACK, (x,y),(x,y+height-self.fontsize),1)
+		#draw y-axis:
+		pg.draw.line(self.screen, self.BLACK, (x,y+height-self.fontsize),(x+width,y+height-self.fontsize),1)
+
+		k = 0
+		while k < 5:
+			timelabel = self.myfont.render(str(k),1,self.BLACK)
+			self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
+			k+=1
+		# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
+		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
+		self.screen.blit(sLabel,(2,y))
 		# print(sensorLabel +" Data Length: "+str(len(data)))
 		i = 0
 		while (i < len(data) - 1 and i < len(time) - 1):
 			# scale the lines to the appropirate width and height
-			x1 = self.translate(time[i],time[0],maxX+time[0],0,width)
-			x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)
+			x1 = self.translate(time[i],time[0],maxX+time[0],x,x+width)
+			x2 = self.translate(time[i+1],time[0],maxX+time[0],x,x+width)
 			# print("i: "+str(i))
 			# if there are multiple lines per sensor, draw all the lines
 			j = 0 
@@ -66,18 +79,6 @@ class gui:
 					# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
 					self.screen.blit(ppmLabel,(60+j*ppmLabel.get_width(),y-self.fontsize/2))
 				j+=1
-
-			if i == len(data) - 2:
-				pg.draw.line(self.screen, self.BLACK, (x2,y),(x2,y+height-self.fontsize),1)
-				pg.draw.line(self.screen, self.BLACK, (0,y+height-self.fontsize),(x2,y+height-self.fontsize),1)
-				k = 0
-				while k < 5: #To Do: make this more robust
-					timelabel = self.myfont.render(str(k),1,self.BLACK)
-					self.screen.blit(timelabel,(x2-k*width/5-5,y+height-self.fontsize))
-					k+=1
-				# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
-				sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
-				self.screen.blit(sLabel,(2,y))
 			i += 1
 
 
@@ -87,7 +88,12 @@ class gui:
 		smallGraphHeight = self.screenHeight/len(data)
 		i = 0
 		for sensordata, max_ppm, min_ppm, sensorLabel in zip(data, maxY, minY, label):
-			self.smallgraph(0 , i*smallGraphHeight+self.fontsize, smallGraphWidth , smallGraphHeight , maxX , max_ppm, min_ppm , time , sensordata, sensorLabel)
+			self.smallgraph(self.screenWidth*0.5 , 
+				i*smallGraphHeight+self.fontsize, 
+				smallGraphWidth , 
+				smallGraphHeight , 
+				maxX , max_ppm, min_ppm , time , 
+				sensordata, sensorLabel)
 			i += 1
 		
 
