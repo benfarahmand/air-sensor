@@ -47,9 +47,9 @@ class gui:
 
 	def smallgraph(self, x, y, width, height, maxX, maxY, minY, time, data, sensorLabel):
 		#draw y-axis:
-		pg.draw.line(self.screen, self.BLACK, (x,y),(x,y+height-self.fontsize*2),1)
+		pg.draw.line(self.screen, self.BLACK, (x,y),(x,y+height-self.fontsize),1)
 		#draw x-axis:
-		pg.draw.line(self.screen, self.BLACK, (x,y+height),(x+width,y+height),1)
+		pg.draw.line(self.screen, self.BLACK, (x,y+height-self.fontsize),(x+width,y+height-self.fontsize),1)
 
 		k = 0
 		while k < 5:
@@ -89,7 +89,7 @@ class gui:
 		i = 0
 		for sensordata, max_ppm, min_ppm, sensorLabel in zip(data, maxY, minY, label):
 			self.smallgraph(self.screenWidth*0.5 , 
-				i*smallGraphHeight+self.fontsize, 
+				i*smallGraphHeight, 
 				smallGraphWidth , 
 				smallGraphHeight , 
 				maxX , max_ppm, min_ppm , time , 
