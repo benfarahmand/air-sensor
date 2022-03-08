@@ -18,27 +18,30 @@ class MQ2PPM(MQFunctions):
     LABEL = "MQ2"
 
     def __init__(self):
-        super(MQ2PPM, self).__init__()
+        
         self.sensorNumber = 2
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
         # then in another equation below we will use these values to determine the ppm
-        
+        self.gases = {"LPG":[2.3,0.23,-0.48],
+                    "CO":[2.3,0.71,-0.31],
+                    "Smoke":[2.3,0.54,-0.45]}
+        super(MQ2PPM, self).__init__(self.gases)
         # v1
-        self.PropaneCurve = [2.3,0.23,-0.48]    
-        self.COCurve = [2.3,0.71,-0.31]    
-        self.SmokeCurve = [2.3,0.54,-0.45]    
+        # self.PropaneCurve = [2.3,0.23,-0.48]    
+        # self.COCurve = [2.3,0.71,-0.31]    
+        # self.SmokeCurve = [2.3,0.54,-0.45]    
 
         #v2
         # self.PropaneCurve = [2.48,-0.66,-0.7]    
         # self.MethaneCurve = [2.48,-0.51,-0.64]     
         # self.AlcoholCurve =[2.48,-0.36,-0.56]   
     
-    def getMQPPM(self, raw):
-        val = {}
-        read = self.MQResistanceCalculation(raw)
-        val["LPG"] = self.MQCalcPPM(read/self.Ro, self.PropaneCurve)
-        val["CO"] = self.MQCalcPPM(read/self.Ro, self.COCurve)
-        val["Smoke"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
-        return val
+    # def getMQPPM(self, raw):
+    #     val = {}
+    #     read = self.MQResistanceCalculation(raw)
+    #     val["LPG"] = self.MQCalcPPM(read/self.Ro, self.PropaneCurve)
+    #     val["CO"] = self.MQCalcPPM(read/self.Ro, self.COCurve)
+    #     val["Smoke"] = self.MQCalcPPM(read/self.Ro, self.SmokeCurve)
+    #     return val

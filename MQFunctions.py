@@ -5,13 +5,24 @@ class MQFunctions(object):
 
     CALIBRATION_SAMPLE_TIMES = 50
 
-    def __init__(self):
+    def __init__(self, gases):
         self.Ro = self.RO_CLEAN_AIR_FACTOR
         self.calibrationValue = 0.0
         self.calibrationSampleCount = 0
         self.isCalibrationDone = False
         self.data = []
+        self.gases = gases
     	#nothing
+
+     def getMQPPM(self, raw):
+        val = {}
+        read = self.MQResistanceCalculation(raw)
+        for gasName, pCurve in self.gases:
+            val[key] = self.MQCalcPPM(read/self.Ro, pCurve)
+        # val["NH3"] = self.MQCalcPPM(read/self.Ro, self.AmmoniaCurve)
+        # val["ALCOHOL"] = self.MQCalcPPM(read/self.Ro, self.AlcoholCurve)
+        # val["C6H6"] = self.MQCalcPPM(read/self.Ro, self.BenzeneCurve)
+        return val
 
     def MQCalibration(self, raw):
         self.calibrationValue += self.MQResistanceCalculation(raw)

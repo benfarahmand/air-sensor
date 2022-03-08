@@ -12,14 +12,16 @@ class MQ4PPM(MQFunctions):
     LABEL = "MQ4"
 
     def __init__(self):
-        super(MQ4PPM, self).__init__()
         self.sensorNumber = 4
         
         # following values are derived from the logarithmic graphs 
         # from the datasheets format: [x, y, slope]
         # then in another equation below we will use these values to determine the ppm
-        self.MethaneCurve = [3.0,0.0,-0.35]
-        self.LPGCurve = [3.0,0.19,-0.32]
+        # self.MethaneCurve = [3.0,0.0,-0.35]
+        # self.LPGCurve = [3.0,0.19,-0.32]
+        self.gases = {"LPG":[3.0,0.19,-0.32],
+                    "CH4":[3.0,0.0,-0.35]}
+        super(MQ4PPM, self).__init__(self.gases)
     
     
     def getMQPPM(self, raw):
