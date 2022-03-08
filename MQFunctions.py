@@ -17,8 +17,8 @@ class MQFunctions(object):
     def getMQPPM(self, raw):
         val = {}
         read = self.MQResistanceCalculation(raw)
-        for gasName, pCurve in self.gases:
-            val[key] = self.MQCalcPPM(read/self.Ro, pCurve)
+        for gasName, pCurve in self.gases.items():
+            val[gasName] = self.MQCalcPPM(read/self.Ro, pCurve)
         return val
 
     def MQCalibration(self, raw):
