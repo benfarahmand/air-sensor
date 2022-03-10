@@ -79,6 +79,8 @@ class gui:
 					y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 					pg.draw.line(self.screen, self.graphColors[j], (x2,y+height-y2-self.fontsize),(x1,y+height-y1-self.fontsize))
 					if i == len(data) - 2:
+						if sensorLabel == "MQ3":
+							print(sensorLabel +": "+str(gas)+" : "+str(round(data[i + 1][gas])))
 						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm ",1,self.graphColors[j])
 						# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
 						self.screen.blit(ppmLabel,(j*ppmLabel.get_width(),y+height/2))
