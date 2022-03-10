@@ -19,7 +19,11 @@ class MQ4PPM(MQFunctions):
         # then in another equation below we will use these values to determine the ppm
         # self.MethaneCurve = [3.0,0.0,-0.35]
         # self.LPGCurve = [3.0,0.19,-0.32]
-        self.gases = {"LPG":[3.0,0.19,-0.32],
-                    "CH4":[3.0,0.0,-0.35]}
+        self.gases = {"LPG":[3.0,0.2,-0.33],
+                    "CH4":[3.0,0.0,-0.35],
+                    "H2":[3.0,0.57,-0.29],
+                    "CO":[3.0,0.63,-0.09],
+                    "ALCOHOL":[3.0,0.60,-0.11],
+                    "SMOKE":[3.0,0.59,-0.18]}
         super(MQ4PPM, self).__init__(self.gases)
     

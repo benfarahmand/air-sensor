@@ -21,5 +21,8 @@ class MQ7PPM(MQFunctions):
         # self.H2Curve = [1.7,0.15,-0.76]     
 
         self.gases = {"CO":[1.7,0.2,-0.66],
-                    "H2":[1.7,0.15,-0.76]}
+                    "H2":[1.7,0.15,-0.76],
+                    "LPG":[1.70,0.95,-0.13],
+                    "CH4":[1.70,1.02,-0.04],
+                    "ALCOHOL":[1.70,1.03,-0.01]}
         super(MQ7PPM, self).__init__(self.gases)

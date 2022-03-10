@@ -19,7 +19,10 @@ class MQ135PPM(MQFunctions):
         # then in another equation below we will use these values to determine the ppm
         self.gases = {"NH3":[1.0,0.41,-0.40],
                     "ALCOHOL":[1.0,0.29,-0.33],
-                    "C6H6":[1.0,0.20,-0.31]}
+                    "C6H6":[1.0,0.20,-0.31],
+                    "ACETONE":[1.00,0.18,-0.31],
+                    "CO2":[1.00,0.38,-0.37],
+                    "CO":[1.00,0.45,-0.23]}
         super(MQ135PPM, self).__init__(self.gases)
         # self.AmmoniaCurve = [1.0,0.41,-0.40]    
         # self.AlcoholCurve = [1.0,0.29,-0.33]

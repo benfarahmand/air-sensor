@@ -19,5 +19,8 @@ class MQ6PPM(MQFunctions):
         # self.LPGCurve = [2.3,0.3,-0.48]    
         # self.MethaneCurve = [2.3,0.2,-0.28]     
         self.gases = {"LPG":[2.3,0.3,-0.48],
-                    "CH4":[2.3,0.2,-0.28]}
+                    "CH4":[2.3,0.2,-0.28],
+                    "H2":[2.30,0.77,-0.28],
+                    "CO":[2.30,0.95,-0.08],
+                    "ALCOHOL":[2.30,0.90,-0.17]}
         super(MQ6PPM, self).__init__(self.gases)

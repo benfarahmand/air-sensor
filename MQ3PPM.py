@@ -25,7 +25,9 @@ class MQ3PPM(MQFunctions):
         # from the datasheets format: [x, y, slope]
         # then in another equation below we will use these values to determine the ppm
         # self.gases = {"ALCOHOL":[-1.0,0.36,-0.64]} #v1
-        self.gases = {"ALCOHOL":[1.7,-0.74,-0.91]} #v2
+        self.gases = {"ALCOHOL":[1.7,-0.74,-0.91],
+                        "CO":[1.70,-0.05,-0.08],
+                        "H2":[1.70,-0.05,-0.12]} #v2
         super(MQ3PPM, self).__init__(self.gases)
         # self.AlcoholCurve = [-1.0,0.36,-0.64] #v1
         # self.AlcoholCurve = [1.7,-0.74,-0.91] #v2
