@@ -81,7 +81,7 @@ class gui:
 					# print("checking data length "+str(len(data[i][gas])))
 					y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 					y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
-					pg.draw.line(self.screen, self.graphColors[j], (x2-adjustX[],y+height-y2-self.fontsize),(x1-adjustX[],y+height-y1-self.fontsize))
+					pg.draw.line(self.screen, self.graphColors[j], (x2,y+height-y2-self.fontsize),(x1,y+height-y1-self.fontsize))
 					if i == dataL - 2:
 						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm",1,self.graphColors[j])
 						# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
