@@ -55,5 +55,7 @@ class MQFunctions(object):
     #          logarithmic coordinate, power of 10 is used to convert the result to non-logarithmic 
     #          value.
     ############################################################################ 
-    def MQCalcPPM(self, rs_ro_ratio, pcurve):
+    def MQCalcPPM(self, rs_ro_ratio, pcurve): 
+        #there needs to be a minimum and maximum input range for Rs/Ro, 
+        #otherwise the PPM values will fall outside the range of the logarithmic model
         return (math.pow(10,( ((math.log(rs_ro_ratio)-pcurve[1])/ pcurve[2]) + pcurve[0])))
