@@ -8,7 +8,7 @@ class guitest:
 		self.g = gui()
 		self.randomData = []
 		self.timeStamp = []
-		self.numberOfGraphs = 9
+		self.numberOfGraphs = 3
 		self.maxGraphTime = 300 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
