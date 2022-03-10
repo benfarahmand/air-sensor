@@ -51,11 +51,6 @@ class gui:
 		#draw x-axis:
 		pg.draw.line(self.screen, self.BLACK, (x,y+height-self.fontsize),(x+width,y+height-self.fontsize),1)
 
-		k = 0
-		while k < 5:
-			timelabel = self.myfont.render(str(k),1,self.BLACK)
-			self.screen.blit(timelabel,(x+k*width/5-5,y+height-self.fontsize))
-			k+=1
 		# pg.draw.line(self.screen, self.BLACK, (x2+1,y+height-y2),(x2+4,y+height-y2),1)
 		sLabel = self.myfont.render(sensorLabel,1,self.BLACK)
 		self.screen.blit(sLabel,(x-50,y))
@@ -65,14 +60,20 @@ class gui:
 			self.screen.blit(sLabel,(x+5,y))
 		else:
 			i = 0
-			time.reverse()
-			data.reverse()
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropirate width and height
 				x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
 				x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
+				if(i==0):
+					pg.draw.line(self.screen, self.GRAY, (x2,y+height-self.fontsize),(x2,y-self.fontsize))
+					k = 0
+					while k < 5:
+						timelabel = self.myfont.render(str(k),1,self.BLACK)
+						self.screen.blit(timelabel,(x2+k*width/5-5,y+height-self.fontsize))
+						k+=1
+
 				j = 0 
 				for gas in data[i]:
 					# print(sensorLabel +": "+str(gas))
