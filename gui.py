@@ -67,7 +67,7 @@ class gui:
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 				if(i==0):
-					pg.draw.line(self.screen, self.GRAY, (x2,y+height-self.fontsize),(x2,y-self.fontsize))
+					pg.draw.line(self.screen, self.GRAY, (x2,y),(x2,y-self.fontsize))
 					k = 0
 					while k < 5:
 						timelabel = self.myfont.render(str(k),1,self.BLACK)
@@ -85,7 +85,7 @@ class gui:
 						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm ",1,self.graphColors[j])
 						# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
 						self.screen.blit(ppmLabel,(j*ppmLabel.get_width(),y+height/2))
-						j+=1
+					j+=1
 				i += 1
 
 
