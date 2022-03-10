@@ -67,12 +67,10 @@ class gui:
 			i = 0
 			timeL = len(time)
 			dataL = len(data)
-			adjustX = 0
 			while (i < dataL - 1 and i < timeL - 1 and dataL>4):
 				# scale the lines to the appropirate width and height
-				x1 = self.translate(time[i],time[0],maxX+time[0],width,0) - adjustX
-				x2 = self.translate(time[i+1],time[0],maxX+time[0],width,0) - adjustX
-				adjustX = x1
+				x1 = x-self.translate(time[i],time[0],maxX+time[0],width,0)
+				x2 = x-self.translate(time[i+1],time[0],maxX+time[0],width,0)
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 				j = 0 
