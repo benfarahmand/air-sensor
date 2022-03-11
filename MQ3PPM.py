@@ -21,13 +21,9 @@ class MQ3PPM(MQFunctions):
     def __init__(self):
         
         self.sensorNumber = 3
-        # following values are derived from the logarithmic graphs 
-        # from the datasheets format: [x, y, slope]
-        # then in another equation below we will use these values to determine the ppm
-        # self.gases = {"ALCOHOL":[-1.0,0.36,-0.64]} #v1
-        self.gases = {"ALCOHOL":[1.7,-0.74,-0.91],
-                        "CO":[1.70,-0.05,-0.08],
-                        "H2":[1.70,-0.05,-0.12]} #v2
+
+        #format for array: [x, y, slope, min_Rs/Ro, max_Rs/Ro]
+        self.gases = {"ALCOHOL":[1.7,-0.74,-0.91,0.022,0.18],
+                        "CO":[1.70,-0.05,-0.08,0.75,0.9],
+                        "H2":[1.70,-0.05,-0.12,0.68,0.9]}
         super(MQ3PPM, self).__init__(self.gases)
-        # self.AlcoholCurve = [-1.0,0.36,-0.64] #v1
-        # self.AlcoholCurve = [1.7,-0.74,-0.91] #v2
