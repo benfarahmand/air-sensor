@@ -63,16 +63,14 @@ class gui:
 			sLabel = self.myfont.render("Calibrating... "+str(calibrationSampleCount),1,self.BLACK)
 			self.screen.blit(sLabel,(x+5,y))
 		else:
-			i = len(data) - 2
-			d = 0
+			i = 0
+			# d = 0
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropirate width and height
-				# x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
-				# x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
-				x1 = self.translate(time[i],time[0],time[0]+maxX,width,0)-d
-				x2 = self.translate(time[i + 1],time[0],time[0]+maxX,width,0)-d
-				if i == len(data) - 2:
-					d = x2
+				x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
+				x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
+				# x1 = self.translate(time[i],time[0],time[0]+maxX,width,0)
+				# x2 = self.translate(time[i + 1],time[0],time[0]+maxX,width,0)
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 
@@ -90,7 +88,7 @@ class gui:
 						# self.screen.blit(ppmLabel,(x2+5+j*ppmLabel.get_width(),y+height/2-self.fontsize/2))
 						self.screen.blit(ppmLabel,(j*ppmLabel.get_width(),y+height/2))
 					j+=1
-				i -= 1
+				i += 1
 
 
 	def draw(self, time, sensorArray, maxX):

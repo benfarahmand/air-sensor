@@ -42,7 +42,8 @@ class AirSensor:
 			lengthOfTime = len(self.timeStamp)
 			for sensor in self.sensorArray:
 				if len(sensor.data) >= lengthOfTime:
-					del sensor.data[0]
+					# del sensor.data[0]
+					del sensor.data[len(sensor.data)-1]
 
 		try :
 			for name, value in data.items():
@@ -51,9 +52,11 @@ class AirSensor:
 						if sensor.isCalibrationDone == False:
 							sensor.MQCalibration(value)
 						else:
-							sensor.data.append(sensor.getMQPPM(value))
+							# sensor.data.append(sensor.getMQPPM(value))
+							sensor.data.insert(0,sensor.getMQPPM(value))
 						if name=='MQ2':
-							self.timeStamp.append(time.time()-self.seconds)
+							# self.timeStamp.append(time.time()-self.seconds)
+							self.timeStamp.insert(0,time.time()-self.seconds)
 		except:
 			print("Issue reading arduino serial data.")
 		
