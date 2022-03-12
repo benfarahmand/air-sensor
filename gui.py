@@ -76,7 +76,7 @@ class gui:
 					pg.draw.line(self.screen, self.graphColors[j], (x2,y+height-y2-self.fontsize),(x1,y+height-y1-self.fontsize))
 					if i == len(data) - 2:
 						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm ",1,self.graphColors[j])
-						self.screen.blit(ppmLabel,(labelWidthSum+ppmLabel.get_width(),y+height/2))
+						self.screen.blit(ppmLabel,(labelWidthSum,y+height/2))
 						labelWidthSum = labelWidthSum+ppmLabel.get_width()
 					j+=1
 				i += 1
