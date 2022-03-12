@@ -67,8 +67,8 @@ class gui:
 			# d = 0
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropirate width and height
-				x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
-				x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
+				x1 = self.translate(time[i],time[0],maxX+time[0],width,0)+x
+				x2 = self.translate(time[i+1],time[0],maxX+time[0],width,0)+x
 				# x1 = self.translate(time[i],time[0],time[0]+maxX,width,0)
 				# x2 = self.translate(time[i + 1],time[0],time[0]+maxX,width,0)
 				# print("i: "+str(i))
