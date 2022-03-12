@@ -64,12 +64,14 @@ class gui:
 			self.screen.blit(sLabel,(x+5,y))
 		else:
 			i = 0
+			d = 0
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropirate width and height
 				# x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
 				# x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
-				x1 = width-self.translate(time[len(time) - 2 - i],time[0],time[0]+maxX,0,width)+x
-				x2 = width-self.translate(time[len(time) - 1 - i],time[0],time[0]+maxX,0,width)+x
+				x1 = self.translate(time[i],time[0],time[0]+maxX,width,0)+x
+				x2 = self.translate(time[i + 1],time[0],time[0]+maxX,width,0)+x
+				d = x-x2
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 
@@ -79,7 +81,7 @@ class gui:
 					# print("checking data length "+str(len(data[i][gas])))
 					y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 					y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
-					pg.draw.line(self.screen, self.graphColors[j], (x2,y+height-y2-self.fontsize),(x1,y+height-y1-self.fontsize))
+					pg.draw.line(self.screen, self.graphColors[j], (x2-d,y+height-y2-self.fontsize),(x1-d,y+height-y1-self.fontsize))
 					if i == len(data) - 2:
 						# if sensorLabel == "MQ3":
 						# 	print(sensorLabel +": "+str(gas)+" : "+str(round(data[i + 1][gas])))
