@@ -19,10 +19,12 @@ class MQFunctions(object):
         read = self.MQResistanceCalculation(raw)
         for gasName, pCurve in self.gases.items():
             #format for pCurve array: [x, y, slope, min_Rs/Ro, max_Rs/Ro]
-            if read/self.Ro < pCurve[3] or read/self.Ro > pCurve[4]:
-                val[gasName] = -1
-            else:
-                val[gasName] = self.MQCalcPPM(read/self.Ro, pCurve)
+            # if read/self.Ro < pCurve[3]:
+            #     val[gasName] = -2
+            # else if read/self.Ro > pCurve[4]:
+            #     val[gasName] = -1
+            # else:
+            val[gasName] = self.MQCalcPPM(read/self.Ro, pCurve)
         return val
 
     def MQCalibration(self, raw):
