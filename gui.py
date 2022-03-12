@@ -72,7 +72,7 @@ class gui:
 				x1 = x+self.translate(time[i],time[0],time[0]+maxX,width,0)-d
 				x2 = x+self.translate(time[i + 1],time[0],time[0]+maxX,width,0)-d
 				if i == 0:
-				d = x2
+					d = x2
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 
