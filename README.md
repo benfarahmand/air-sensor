@@ -11,6 +11,7 @@ Hardware:
 
 To Do:
 - IN PROGRESS: create gui that visualizes the data
+ - group the gases and show a range of values
 - DONE: better understand how calibration works to set the Ro value. implement calibration
  - Store calibration values to text file and load them again so we don't have to keep calibrating
 - implement equation to scale Rs/Ro based on temperature and humidity

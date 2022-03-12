@@ -21,7 +21,7 @@ class AirSensor:
 						MQ5PPM(),MQ6PPM(),MQ7PPM(),
 						MQ8PPM(),MQ9PPM(),MQ135PPM()]
 		self.gui = gui()
-		self.maxGraphTime = 90 #seconds. any data over this amount is removed
+		self.maxGraphTime = 300 #seconds. any data over this amount is removed
 		self.seconds = 0
 		self.secondsPassed = 0
 
@@ -44,7 +44,7 @@ class AirSensor:
 				if len(sensor.data) >= lengthOfTime:
 					del sensor.data[len(sensor.data)-1]
 
-		try :
+		try:
 			for name, value in data.items():
 				for sensor in self.sensorArray:
 					if name == sensor.LABEL:
@@ -56,7 +56,7 @@ class AirSensor:
 							self.timeStamp.insert(0,time.time()-self.seconds)
 		except:
 			print("Issue reading arduino serial data.")
-		
+
 	def __call__(self):
 		
 		self.ser.reset_input_buffer()
