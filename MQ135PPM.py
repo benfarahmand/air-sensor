@@ -4,27 +4,21 @@ from MQFunctions import MQFunctions
 
 class MQ135PPM(MQFunctions):
 
-    RL_VALUE                     = 20        # define the load resistance on the board, in kilo ohms
-    RO_CLEAN_AIR_FACTOR          = 3.6       # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
-                                             # which is derived from the chart in datasheet
-    MIN_PPM = 10 #unclear if this is accurate. got it from data sheet.
+    RL_VALUE                     = 20     
+    RO_CLEAN_AIR_FACTOR          = 3.6    
+    MIN_PPM = 10
     MAX_PPM = 300
     LABEL = "MQ135"
 
     def __init__(self):
         self.sensorNumber = 135
         
-        # following values are derived from the logarithmic graphs 
-        # from the datasheets format: [x, y, slope], then we can use y=mx+b to figure out
-        # then in another equation below we will use these values to determine the ppm
-        self.gases = {"NH3":[1.0,0.41,-0.40],
-                    "ALCOHOL":[1.0,0.29,-0.33],
-                    "C6H6":[1.0,0.20,-0.31],
-                    "ACETONE":[1.00,0.18,-0.31],
-                    "CO2":[1.00,0.38,-0.37],
-                    "CO":[1.00,0.45,-0.23]}
+        #format for array: [x, y, slope, min_Rs/Ro, max_Rs/Ro]
+        self.gases = {"NH3":[1.0,0.41,-0.40,0.78,2.6],
+                    "ALCOHOL":[1.0,0.29,-0.33,0.73,1.95],
+                    "C6H6":[1.0,0.20,-0.31,0.64,1.6],
+                    "ACETONE":[1.00,0.18,-0.31,0.59,1.5],
+                    "CO2":[1.00,0.38,-0.37,0.8,2.4],
+                    "CO":[1.00,0.45,-0.23,1.4,2.8]}
         super(MQ135PPM, self).__init__(self.gases)
-        # self.AmmoniaCurve = [1.0,0.41,-0.40]    
-        # self.AlcoholCurve = [1.0,0.29,-0.33]
-        # self.BenzeneCurve = [1.0,0.20,-0.31]
     
