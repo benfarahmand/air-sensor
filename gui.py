@@ -63,22 +63,22 @@ class gui:
 			self.screen.blit(sLabel,(x+5,y))
 		else:
 			i = 0
-			gasLabel = 0
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropriate width
 				x1 = self.translate(time[i],time[0],maxX+time[0],width,0) 
 				x2 = self.translate(time[i+1],time[0],maxX+time[0],width,0)
 				# if there are multiple lines per sensor, draw all the lines
-				j = 0 
+				j = 0
+				labelWidthSum = 0
 				for gas in data[i]:
 					y1 = self.translate(round(data[i][gas]),0,maxY,0,height-self.fontsize)
 					y2 = self.translate(round(data[i + 1][gas]),0,maxY,0,height-self.fontsize)
 					pg.draw.line(self.screen, self.graphColors[j], (x2,y+height-y2-self.fontsize),(x1,y+height-y1-self.fontsize))
 					if i == len(data) - 2:
-						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm ",1,self.graphColors[gasLabel])
-						self.screen.blit(ppmLabel,(gasLabel*ppmLabel.get_width(),y+height/2))
+						ppmLabel = self.myfont.render(str(gas)+":"+str(round(data[i][gas]))+"ppm ",1,self.graphColors[j])
+						self.screen.blit(ppmLabel,(labelWidthSum+ppmLabel.get_width(),y+height/2))
+						labelWidthSum = labelWidthSum+ppmLabel.get_width()
 					j+=1
-					gasLabel+=1
 				i += 1
 
 
