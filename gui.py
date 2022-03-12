@@ -64,14 +64,15 @@ class gui:
 			self.screen.blit(sLabel,(x+5,y))
 		else:
 			i = 0
-			# d = 0
+			d = 0
 			while (i < len(data) - 1 and i < len(time) - 1 and len(data)>4):
 				# scale the lines to the appropirate width and height
 				# x1 = self.translate(time[i],time[0],maxX+time[0],0,width)+x
 				# x2 = self.translate(time[i+1],time[0],maxX+time[0],0,width)+x
-				x1 = x+self.translate(time[i],time[0],time[0]+maxX,0,width)
-				x2 = x+self.translate(time[i + 1],time[0],time[0]+maxX,0,width)
-				# d = x-x2
+				x1 = x+self.translate(time[i],time[0],time[0]+maxX,width,0)-d
+				x2 = x+self.translate(time[i + 1],time[0],time[0]+maxX,width,0)-d
+				if i == 0:
+				d = x2
 				# print("i: "+str(i))
 				# if there are multiple lines per sensor, draw all the lines
 
